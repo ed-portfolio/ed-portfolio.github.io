@@ -20,7 +20,7 @@
             scroll-behavior: smooth;
         }
 
-        /* MENU DE NAVIGATION EN HAUT FIXE */
+        /* BARRE DE NAVIGATION EN HAUT */
         .top-nav {
             position: fixed;
             top: 0;
@@ -58,7 +58,7 @@
         .nav-links a:hover { color: #fff; }
         .insta-icon { color: #d8a26b !important; font-weight: 500; }
 
-        /* ACCUEIL PLEIN ÉCRAN ACCUEILLANT */
+        /* HERO ACCUEIL */
         .hero {
             height: 100vh;
             display: flex;
@@ -88,8 +88,6 @@
             color: #666;
             text-transform: uppercase;
             margin-bottom: 10px;
-            opacity: 0;
-            animation: fadeInUp 1.2s ease forwards;
         }
 
         .hero h1 { 
@@ -114,7 +112,7 @@
             animation: fadeInUp 1.2s ease 0.6s forwards; 
         }
 
-        /* BLOC DES STATISTIQUES MODIFIÉ */
+        /* COMPTEURS AVEC LA LIGNE HORIZONTALE */
         .stats-block {
             display: flex;
             flex-direction: column;
@@ -129,11 +127,10 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 70px;
+            gap: 60px;
             width: 100%;
             padding-bottom: 20px;
         }
-        /* FINE LIGNE HORIZONTALE EN DESSOUS DES CHIFFRES */
         .stats-hr {
             width: 100%;
             height: 1px;
@@ -156,7 +153,6 @@
             text-transform: uppercase;
         }
 
-        /* PHRASE DE PRÉSENTATION */
         .hero p.subtitle-long {
             font-family: 'Montserrat', sans-serif;
             font-weight: 200;
@@ -171,7 +167,6 @@
             animation: fadeInUp 1.2s ease 1.1s forwards;
         }
 
-        /* BOUTON OVALE COLORÉ */
         .hero-btn {
             background-color: #d8a26b;
             color: #111;
@@ -187,21 +182,17 @@
             opacity: 0;
             animation: fadeInUp 1.2s ease 1.3s forwards;
         }
-        .hero-btn:hover {
-            background-color: #ecd7be;
-            transform: translateY(-2px);
-        }
+        .hero-btn:hover { background-color: #ecd7be; transform: translateY(-2px); }
         
-        /* LAYOUT SECTIONS */
+        /* SECTION CONTENU */
         .content-section { padding: 100px 20px 40px 20px; max-width: 1200px; margin: 0 auto; }
         .section-title { font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; font-weight: 400; text-align: center; letter-spacing: 4px; color: #ecd7be; margin-bottom: 40px; }
 
-        /* Menu Galerie */
         nav.gallery-nav { display: flex; justify-content: center; gap: 15px; margin: 20px 0 40px 0; flex-wrap: wrap; }
         .filter-btn { background: none; border: 1px solid #1a1a22; color: #444; padding: 10px 25px; border-radius: 25px; cursor: pointer; transition: all 0.4s ease; font-size: 0.85rem; letter-spacing: 1px; }
         .filter-btn:hover, .filter-btn.active { border-color: #888; color: #fff; background-color: #ffffff04; }
 
-        /* Grille Pinterest */
+        /* GRILLE PINTEREST */
         .gallery { column-count: 3; column-gap: 30px; }
         @media (max-width: 900px) { .gallery { column-count: 2; } }
         @media (max-width: 600px) { .gallery { column-count: 1; } }
@@ -214,16 +205,14 @@
         .gallery-item:hover { border-color: #555; box-shadow: 0 15px 30px rgba(0,0,0,0.5); }
         .gallery-item:hover img { transform: scale(1.02); }
         
-        /* Section À propos */
         .about-box { max-width: 700px; margin: 0 auto; text-align: center; line-height: 1.8; color: #aaa; font-weight: 300; font-size: 1rem; }
         .about-box strong { color: #ecd7be; font-weight: 500; display: block; margin-bottom: 10px; font-size: 1.2rem; font-family: 'Cormorant Garamond', serif; letter-spacing: 1px; }
 
-        /* Section Contact */
         .contact-box { max-width: 600px; margin: 0 auto; text-align: center; }
         .mail-link { display: inline-block; font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; color: #d8a26b; text-decoration: none; margin-top: 10px; transition: color 0.3s; letter-spacing: 1px; }
         .mail-link:hover { color: #ecd7be; }
 
-        /* Lightbox */
+        /* LIGHTBOX CLASSIQUE */
         .lightbox { display: none; position: fixed; z-index: 9999; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(5, 5, 7, 0.98); justify-content: center; align-items: center; cursor: zoom-out; }
         .lightbox img { max-width: 95%; max-height: 95%; object-fit: contain; border: 1px solid #1a1a22; box-shadow: 0 0 60px rgba(0,0,0,0.9); }
         
@@ -241,7 +230,6 @@
 </head>
 <body>
 
-    <!-- MENUS DU HAUT FIXE PERMANENT -->
     <header class="top-nav">
         <div class="nav-logo" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">ED</div>
         <div class="nav-links">
@@ -252,11 +240,20 @@
         </div>
     </header>
 
-    <!-- ACCUEIL COMPLET -->
     <section class="hero">
         <img class="avatar" src="guerriere.jpg" alt="ED Avatar">
         <div class="hero-tag">Illustrateur & Concept Artist</div>
         <h1>ED</h1>
         <p class="subtitle-prince">« Dessine-moi... »</p>
         
-        <!-- COMPTEURS AVEC SEPARATION HORIZONTALE LOGIQUE -->
+        <div class="stats-block">
+            <div class="stats-container">
+                <div class="stat-item">
+                    <div class="stat-number">4</div>
+                    <div class="stat-label">Œuvres</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">2</div>
+                    <div class="stat-label">Univers</div>
+                </div>
+                <div class="stat-item">
