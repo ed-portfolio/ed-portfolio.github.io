@@ -8,7 +8,6 @@
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; }
         
-        /* FOND CRÉATIF : Effet aquarelle brumeuse style Burton */
         body { 
             background-color: #0c0c0e; 
             background-image: 
@@ -24,15 +23,12 @@
         h1 { font-weight: 600; letter-spacing: 10px; font-size: 3.5rem; color: #fff; }
         p.subtitle { font-weight: 300; color: #777; margin-top: 15px; font-size: 1.1rem; letter-spacing: 4px; font-style: italic; }
         
-        /* Menu des Catégories Épuré */
         nav { display: flex; justify-content: center; gap: 15px; margin: 40px 0; flex-wrap: wrap; }
         .filter-btn { background: none; border: 1px solid #222; color: #555; padding: 10px 25px; border-radius: 25px; cursor: pointer; transition: all 0.4s ease; font-size: 0.85rem; letter-spacing: 1px; }
         .filter-btn:hover, .filter-btn.active { border-color: #fff; color: #fff; background-color: #ffffff07; box-shadow: 0 0 15px rgba(255,255,255,0.03); }
 
-        /* Grille de la Galerie Fluide */
-        .gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 35px; padding: 20px; max-width: 1200px; margin: 0 auto; }
+        .gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 35px; padding: 20px; max-width: 1200px; margin: 0 auto; }
         
-        /* Animation d'apparition douce des cartes */
         .gallery-item { 
             position: relative; 
             overflow: hidden; 
@@ -44,9 +40,8 @@
             animation: fadeIn 1s ease forwards;
         }
         
-        .gallery-item img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.6s cubic-bezier(0.25, 0.8, 0.25, 1); }
+        .gallery-item img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.6s cubic-bezier(0.25, 0.8, 0.25, 1); aspect-ratio: 1 / 1; }
         
-        /* Effet au survol : zoom doux + lueur élégante */
         .gallery-item:hover { border-color: #666; box-shadow: 0 15px 35px rgba(0,0,0,0.6); }
         .gallery-item:hover img { transform: scale(1.04); }
         
@@ -55,7 +50,6 @@
             to { opacity: 1; transform: translateY(0); }
         }
         
-        /* Agrandissement au clic (Lightbox) */
         .lightbox { display: none; position: fixed; z-index: 999; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(6, 6, 8, 0.97); justify-content: center; align-items: center; cursor: zoom-out; animation: fadeIn 0.2s ease; }
         .lightbox img { max-width: 90%; max-height: 90%; object-fit: contain; border: 1px solid #222; box-shadow: 0 0 60px rgba(0,0,0,0.9); }
         .close-btn { position: absolute; top: 20px; right: 30px; color: #fff; font-size: 40px; font-weight: 300; cursor: pointer; }
@@ -79,13 +73,22 @@
     </header>
 
     <main class="gallery">
-        <!-- DESSIN 1 (Rangé dans la catégorie "edition") -->
+        <!-- DESSIN 1 -->
         <div class="gallery-item" data-category="edition" onclick="openLightbox('crossover1.jpg')">
             <img src="crossover1.jpg" alt="Dessin ED">
         </div>
+
+        <!-- DESSIN 2 : La Châtelaine -->
+        <div class="gallery-item" data-category="edition" onclick="openLightbox('chatelaine.jpg')">
+            <img src="chatelaine.jpg" alt="Dessin ED">
+        </div>
+
+        <!-- DESSIN 3 : Le Château -->
+        <div class="gallery-item" data-category="edition" onclick="openLightbox('chateau.jpg')">
+            <img src="chateau.jpg" alt="Dessin ED">
+        </div>
     </main>
 
-    <!-- Fenêtre d'agrandissement -->
     <div id="customLightbox" class="lightbox" onclick="closeLightbox()">
         <span class="close-btn">&times;</span>
         <img id="lightboxImg" src="" alt="Agrandissement">
@@ -96,7 +99,6 @@
     </footer>
 
     <script>
-        /* Logique pour la Lightbox */
         function openLightbox(imageSrc) {
             document.getElementById('lightboxImg').src = imageSrc;
             document.getElementById('customLightbox').style.display = 'flex';
@@ -105,13 +107,10 @@
             document.getElementById('customLightbox').style.display = 'none';
         }
 
-        /* Logique intelligente pour filtrer les dessins */
         function filterGallery(category, button) {
-            // Activer le bon bouton visuellement
             document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
             button.classList.add('active');
 
-            // Filtrer les images
             document.querySelectorAll('.gallery-item').forEach(item => {
                 if (category === 'tout' || item.getAttribute('data-category') === category) {
                     item.style.display = 'block';
