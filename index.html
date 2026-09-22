@@ -159,7 +159,7 @@
 
         <!-- 👇 LISTE DES DESSINS : POUR MODIFIER LES FICHIERS ET LES CATÉGORIES -->
                 <main class="gallery">
-            <!-- Dessin 1 : Renard (AFFICHÉ à l'accueil) -->
+            <!-- Dessin 1 : Renard (MASQUÉ à l'accueil, s'affiche dans sa catégorie) -->
             <div class="gallery-item" data-category="contes" data-favori="oui" onclick="openLightbox('crossover1.jpg')"><img src="crossover1.jpg" alt="Dessin ED"></div>
 
             <!-- Dessin 2 : Chatelaine (MASQUÉ à l'accueil, s'affiche dans sa catégorie) -->
@@ -168,7 +168,7 @@
             <!-- Dessin 3 : Château (MASQUÉ à l'accueil, s'affiche dans sa catégorie) -->
             <div class="gallery-item" data-category="contes" data-favori="non" onclick="openLightbox('chateau.jpg')"><img src="chateau.jpg" alt="Dessin ED"></div>
 
-            <!-- Dessin 4 : Guerrière (AFFICHÉ à l'accueil) -->
+            <!-- Dessin 4 : Guerrière (MASQUÉ à l'accueil, s'affiche dans sa catégorie) -->
             <div class="gallery-item" data-category="creatures" data-favori="oui" onclick="openLightbox('guerriere.jpg')"><img src="guerriere.jpg" alt="Dessin ED"></div>
 
            <!-- Dessin 5 : Dragon (MASQUÉ à l'accueil, s'affiche dans sa catégorie) -->
@@ -203,30 +203,72 @@
         </div>
     </section>
 
-    <!-- FENÊTRE DE L'AGRANDISSEMENT AU CLIC (LIGHTBOX) -->
-    <div id="customLightbox" class="lightbox" onclick="closeLightbox()">
-        <img id="lightboxImg" src="" alt="Agrandissement">
+       <!-- FENÊTRE DE L'AGRANDISSEMENT AVEC FLÈCHES -->
+    <div id="customLightbox" class="lightbox">
+        <span class="lightbox-btn prev-btn" onclick="changeImage(-1)">&#8249;</span>
+        <img id="lightboxImg" src="" alt="Agrandissement" onclick="closeLightbox()">
+        <span class="lightbox-btn next-btn" onclick="changeImage(1)">&#8250;</span>
     </div>
 
     <footer>
         <p>&copy; 2026 ED. Tous droits réservés.</p>
     </footer>
 
-    <!-- ========================================================
-       SCRIPT LOGIQUE INFORMATEUR (NE PAS TOUCHER POUR ÉVITER LES BUGS)
-       ======================================================== -->
     <script>
-        function scrollToGallery() { var el = document.getElementById('portfolio-content'); if(el) el.scrollIntoView({ behavior: 'smooth' }); }
-        function openLightbox(imageSrc) { var lb = document.getElementById('customLightbox'); var img = document.getElementById('lightboxImg'); if(lb && img) { img.src = imageSrc; lb.style.display = 'flex'; } }
-        function closeLightbox() { var lb = document.getElementById('customLightbox'); if(lb) lb.style.display = 'none'; }
-        function filterGallery(category, button) {
-            var buttons = document.querySelectorAll('.filter-btn');
-            for (var i = 0; i < buttons.length; i++) { buttons[i].classList.remove('active'); }
+        var currentVisibleImages = [];
+        var currentImgIndex = 0;
+
+        function scrollToGallery() { 
+            var el = document.getElementById('portfolio-content'); 
+            if(el) el.scrollIntoView({ behavior: 'smooth' }); 
+        }
+
+        function openLightbox(imageSrc) { 
+            var lb = document.getElementById('customLightbox'); 
+            var img = document.getElementById('lightboxImg'); 
+            if(lb && img) {
+                // Créer la liste des images actuellement affichées à l'écran (respecte les filtres)
+                currentVisibleImages = [];
+                document.querySelectorAll('.gallery-item').forEach(function(item) {
+                    if (item.style.display !== 'none') {
+                        var imgSrc = item.querySelector('img').getAttribute('src');
+                        currentVisibleImages.push(imgSrc);
+                    }
+                });
+                
+                // Trouver la position de l'image cliquée dans la liste
+                currentImgIndex = currentVisibleImages.indexOf(imageSrc);
+                
+                img.src = imageSrc; 
+                lb.style.display = 'flex'; 
+            } 
+        }
+
+        function closeLightbox() { 
+            var lb = document.getElementById('customLightbox'); 
+            if(lb) lb.style.display = 'none'; 
+        }
+
+        function changeImage(direction) {
+            currentImgIndex += direction;
+            // Gestion de la boucle (si on dépasse, on revient au début ou à la fin)
+            if (currentImgIndex >= currentVisibleImages.length) currentImgIndex = 0;
+            if (currentImgIndex < 0) currentImgIndex = currentVisibleImages.length - 1;
+            
+            var img = document.getElementById('lightboxImg');
+            if (img && currentVisibleImages[currentImgIndex]) {
+                img.src = currentVisibleImages[currentImgIndex];
+            }
+        }
+
+        function filterGallery(category, button) { 
+            var buttons = document.querySelectorAll('.filter-btn'); 
+            for (var i = 0; i < buttons.length; i++) { buttons[i].classList.remove('active'); } 
             if(button) button.classList.add('active'); 
             
-            var items = document.querySelectorAll('.gallery-item');
-            for (var j = 0; j < items.length; j++) {
-                var item = items[j];
+            var items = document.querySelectorAll('.gallery-item'); 
+            for (var j = 0; j < items.length; j++) { 
+                var item = items[j]; 
                 if (category === 'selection') {
                     if (item.getAttribute('data-favori') === 'oui') {
                         item.style.display = 'block';
@@ -238,14 +280,13 @@
                     item.style.display = 'block';
                 } else {
                     item.style.display = 'none';
-                }
-            }
+                } 
+            } 
         }
+
         window.addEventListener('DOMContentLoaded', function() {
             filterGallery('selection', document.querySelector('.filter-btn.active'));
         });
     </script>
-
 </body>
 </html>
-
