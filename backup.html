@@ -73,6 +73,14 @@
         .contact-box { max-width: 600px; margin: 0 auto; text-align: center; padding-bottom: 40px; }
         .mail-link { display: inline-block; font-family: 'Cormorant Garamond', serif; font-size: 2rem; color: #d8a26b; text-decoration: none; margin-top: 15px; transition: color 0.3s; letter-spacing: 1px; }
         .mail-link:hover { color: #ecd7be; }
+
+        /* DESIGN DES FLÈCHES DE NAVIGATION */
+        .lightbox-btn { position: absolute; top: 50%; transform: translateY(-50%); color: rgba(255,255,255,0.4); font-size: 50px; font-weight: 200; cursor: pointer; user-select: none; transition: color 0.3s; padding: 20px; z-index: 10000; }
+        .lightbox-btn:hover { color: #fff; }
+        .prev-btn { left: 20px; }
+        .next-btn { right: 20px; }
+        @media (max-width: 600px) { .lightbox-btn { font-size: 35px; padding: 10px; } }
+
         
         .lightbox { display: none; position: fixed; z-index: 9999; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(5, 5, 7, 0.98); justify-content: center; align-items: center; cursor: zoom-out; }
         .lightbox img { max-width: 95%; max-height: 95%; object-fit: contain; border: 1px solid #1a1a22; box-shadow: 0 0 60px rgba(0,0,0,0.9); }
@@ -138,37 +146,36 @@
     <section id="portfolio-content" class="content-section">
         <h2 class="section-title">Portfolio</h2>
         
-        <!-- LES BOUTONS DES CATÉGORIES -->
+                <!-- LES BOUTONS DES CATÉGORIES -->
         <nav class="gallery-nav">
-            <button class="filter-btn active" onclick="filterGallery('tout', this)">Tout</button>
+            <button class="filter-btn active" onclick="filterGallery('selection', this)">Sélection</button>
             <button class="filter-btn" onclick="filterGallery('contes', this)">Contes & Légendes</button>
             <button class="filter-btn" onclick="filterGallery('portraits', this)">Portraits d'Âmes</button>
             <button class="filter-btn" onclick="filterGallery('creatures', this)">Créatures & Fantasy</button>
             <button class="filter-btn" onclick="filterGallery('croquis', this)">Recherches & Ombres</button>
+            <button class="filter-btn" onclick="filterGallery('tout', this)">Tout</button>
         </nav>
 
+
         <!-- 👇 LISTE DES DESSINS : POUR MODIFIER LES FICHIERS ET LES CATÉGORIES -->
-        <main class="gallery">
-            <!-- Dessin 1 -->
-            <div class="gallery-item" data-category="contes" onclick="openLightbox('crossover1.jpg')">
-                <img src="crossover1.jpg" alt="Dessin ED">
-            </div>
-            <!-- Dessin 2 -->
-            <div class="gallery-item" data-category="contes" onclick="openLightbox('chatelaine.jpg')">
-                <img src="chatelaine.jpg" alt="Dessin ED">
-            </div>
-            <!-- Dessin 3 -->
-            <div class="gallery-item" data-category="contes" onclick="openLightbox('chateau.jpg')">
-                <img src="chateau.jpg" alt="Dessin ED">
-            </div>
-            <!-- Dessin 4 -->
-            <div class="gallery-item" data-category="creatures" onclick="openLightbox('guerriere.jpg')">
-                <img src="guerriere.jpg" alt="Dessin ED">
-            </div>
-            <div class="gallery-item" data-category="creatures" onclick="openLightbox('dragon.jpg')">
-                <img src="dragon.jpg" alt="Dessin ED">
-            </div>
+                <main class="gallery">
+            <!-- Dessin 1 : Renard (MASQUÉ à l'accueil, s'affiche dans sa catégorie) -->
+            <div class="gallery-item" data-category="contes" data-favori="non" onclick="openLightbox('crossover1.jpg')"><img src="crossover1.jpg" alt="Dessin ED"></div>
+
+            <!-- Dessin 2 : Chatelaine (MASQUÉ à l'accueil, s'affiche dans sa catégorie) -->
+            <div class="gallery-item" data-category="contes" data-favori="non" onclick="openLightbox('chatelaine.jpg')"><img src="chatelaine.jpg" alt="Dessin ED"></div>
+
+            <!-- Dessin 3 : Château (MASQUÉ à l'accueil, s'affiche dans sa catégorie) -->
+            <div class="gallery-item" data-category="contes" data-favori="non" onclick="openLightbox('chateau.jpg')"><img src="chateau.jpg" alt="Dessin ED"></div>
+
+            <!-- Dessin 4 : Guerrière (VISIBLE à l'accueil, s'affiche dans sa catégorie) -->
+            <div class="gallery-item" data-category="creatures" data-favori="oui" onclick="openLightbox('guerriere.jpg')"><img src="guerriere.jpg" alt="Dessin ED"></div>
+
+           <!-- Dessin 5 : Dragon (MASQUÉ à l'accueil, s'affiche dans sa catégorie) -->
+          <div class="gallery-item" data-category="creatures" data-favori="non" onclick="openLightbox('dragon.jpg')"><img src="dragon.jpg" alt="Dessin ED"></div>
+        
         </main>
+
     </section>
 
     <!-- ========================================================
@@ -196,24 +203,110 @@
         </div>
     </section>
 
-    <!-- FENÊTRE DE L'AGRANDISSEMENT AU CLIC (LIGHTBOX) -->
-    <div id="customLightbox" class="lightbox" onclick="closeLightbox()">
-        <img id="lightboxImg" src="" alt="Agrandissement">
+       <!-- FENÊTRE DE L'AGRANDISSEMENT AVEC FLÈCHES -->
+    <div id="customLightbox" class="lightbox">
+        <span class="lightbox-btn prev-btn" onclick="changeImage(-1)">&#8249;</span>
+        <img id="lightboxImg" src="" alt="Agrandissement" onclick="closeLightbox()">
+        <span class="lightbox-btn next-btn" onclick="changeImage(1)">&#8250;</span>
     </div>
 
     <footer>
         <p>&copy; 2026 ED. Tous droits réservés.</p>
     </footer>
 
-    <!-- ========================================================
-       SCRIPT LOGIQUE INFORMATEUR (NE PAS TOUCHER POUR ÉVITER LES BUGS)
-       ======================================================== -->
-    <script>
-        function scrollToGallery() { var el = document.getElementById('portfolio-content'); if(el) el.scrollIntoView({ behavior: 'smooth' }); }
-        function openLightbox(imageSrc) { var lb = document.getElementById('customLightbox'); var img = document.getElementById('lightboxImg'); if(lb && img) { img.src = imageSrc; lb.style.display = 'flex'; } }
-        function closeLightbox() { var lb = document.getElementById('customLightbox'); if(lb) lb.style.display = 'none'; }
-        function filterGallery(category, button) { var buttons = document.querySelectorAll('.filter-btn'); for (var i = 0; i < buttons.length; i++) { buttons[i].classList.remove('active'); } if(button) button.classList.add('active'); var items = document.querySelectorAll('.gallery-item'); for (var j = 0; j < items.length; j++) { var item = items[j]; if (category === 'tout' || item.getAttribute('data-category') === category) { item.style.display = 'block'; } else { item.style.display = 'none'; } } }
-    </script>
+        <script>
+        var currentVisibleImages = [];
+        var currentImgIndex = 0;
 
+        function scrollToGallery() { 
+            var el = document.getElementById('portfolio-content'); 
+            if(el) el.scrollIntoView({ behavior: 'smooth' }); 
+        }
+
+        function openLightbox(imageSrc) { 
+            var lb = document.getElementById('customLightbox'); 
+            var img = document.getElementById('lightboxImg'); 
+            if(lb && img) {
+                currentVisibleImages = [];
+                document.querySelectorAll('.gallery-item').forEach(function(item) {
+                    if (item.style.display !== 'none') {
+                        var imgSrc = item.querySelector('img').getAttribute('src');
+                        currentVisibleImages.push(imgSrc);
+                    }
+                });
+                
+                currentImgIndex = currentVisibleImages.indexOf(imageSrc);
+                img.src = imageSrc; 
+                lb.style.display = 'flex'; 
+            } 
+        }
+
+        function closeLightbox() { 
+            var lb = document.getElementById('customLightbox'); 
+            if(lb) lb.style.display = 'none'; 
+        }
+
+        // FERMER L'IMAGE EN CLIQUANT DANS LE NOIR AUTOUR
+        window.addEventListener('click', function(e) {
+            var lb = document.getElementById('customLightbox');
+            // Si on clique sur la fenêtre noire elle-même (et pas sur l'image ou les flèches), on ferme !
+            if (e.target === lb) {
+                closeLightbox();
+            }
+        });
+
+        function changeImage(direction) {
+            currentImgIndex += direction;
+            if (currentImgIndex >= currentVisibleImages.length) currentImgIndex = 0;
+            if (currentImgIndex < 0) currentImgIndex = currentVisibleImages.length - 1;
+            
+            var img = document.getElementById('lightboxImg');
+            if (img && currentVisibleImages[currentImgIndex]) {
+                img.src = currentVisibleImages[currentImgIndex];
+            }
+        }
+
+        // NAVIGUER AVEC LES FLÈCHES DU CLAVIER (Gauche, Droite, Échap)
+        document.addEventListener('keydown', function(e) {
+            var lb = document.getElementById('customLightbox');
+            // On vérifie que la fenêtre en grand est bien ouverte avant d'écouter le clavier
+            if (lb && lb.style.display === 'flex') {
+                if (e.key === 'ArrowRight') {
+                    changeImage(1);  // Flèche droite du clavier -> Suivant
+                } else if (e.key === 'ArrowLeft') {
+                    changeImage(-1); // Flèche gauche du clavier -> Précédent
+                } else if (e.key === 'Escape') {
+                    closeLightbox(); // Touche Échap -> Fermer
+                }
+            }
+        });
+
+        function filterGallery(category, button) { 
+            var buttons = document.querySelectorAll('.filter-btn'); 
+            for (var i = 0; i < buttons.length; i++) { buttons[i].classList.remove('active'); } 
+            if(button) button.classList.add('active'); 
+            
+            var items = document.querySelectorAll('.gallery-item'); 
+            for (var j = 0; j < items.length; j++) { 
+                var item = items[j]; 
+                if (category === 'selection') {
+                    if (item.getAttribute('data-favori') === 'oui') {
+                        item.style.display = 'block';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                } 
+                else if (category === 'tout' || item.getAttribute('data-category') === category) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                } 
+            } 
+        }
+
+        window.addEventListener('DOMContentLoaded', function() {
+            filterGallery('selection', document.querySelector('.filter-btn.active'));
+        });
+    </script>
 </body>
 </html>
