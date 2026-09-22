@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ED - Portfolio d'Illustration</title>
-    <!-- Chargement des polices : Cormorant Garamond pour le côté mystique/fantasy et Montserrat pour le texte -->
     <link href="https://googleapis.com" rel="stylesheet">
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -21,24 +20,28 @@
             scroll-behavior: smooth;
         }
 
-        /* MENU DE NAVIGATION EN HAUT (Comme DouDream) */
+        /* MENU DE NAVIGATION SUPÉRIEUR PERMANENT (FIXE) */
         .top-nav {
-            position: absolute;
+            position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 30px 40px;
-            z-index: 100;
+            padding: 25px 40px;
+            z-index: 1000;
+            background-color: rgba(11, 11, 13, 0.85);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
         }
         .nav-logo {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 1.5rem;
+            font-size: 1.6rem;
             letter-spacing: 2px;
-            color: #fff;
+            color: #ecd7be;
             text-decoration: none;
+            cursor: pointer;
         }
         .nav-links {
             display: flex;
@@ -46,19 +49,16 @@
             gap: 30px;
         }
         .nav-links a {
-            color: #aaa;
+            color: #888;
             text-decoration: none;
             font-size: 0.85rem;
             letter-spacing: 1px;
             transition: color 0.3s;
         }
         .nav-links a:hover { color: #fff; }
-        .insta-icon {
-            color: #d8a26b; /* Couleur dorée discrète pour le bouton Insta */
-            font-weight: 500;
-        }
+        .insta-icon { color: #d8a26b !important; font-weight: 500; }
 
-        /* ACCUEIL PLEIN ÉCRAN REVISITÉ */
+        /* ACCUEIL PLEIN ÉCRAN AÉRÉ */
         .hero {
             height: 100vh;
             display: flex;
@@ -66,7 +66,7 @@
             justify-content: center;
             align-items: center;
             text-align: center;
-            padding: 20px;
+            padding: 80px 20px 20px 20px;
             position: relative;
         }
 
@@ -76,19 +76,18 @@
             border-radius: 50%;
             border: 1px solid #333;
             object-fit: cover;
-            margin-bottom: 30px;
+            margin-bottom: 25px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.6);
             opacity: 0;
             animation: fadeInSlow 2s ease forwards;
         }
         
         .hero-tag {
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             letter-spacing: 4px;
-            color: #8a8994;
+            color: #666;
             text-transform: uppercase;
             margin-bottom: 10px;
-            font-weight: 400;
         }
 
         .hero h1 { 
@@ -96,50 +95,69 @@
             font-weight: 400; 
             letter-spacing: 8px; 
             font-size: 5.5rem; 
-            color: #ecd7be; /* Teinte ivoire/dorée très douce style grimoire */
+            color: #ecd7be; 
             opacity: 0;
-            animation: fadeInUp 1.2s ease 0.4s forwards; 
+            animation: fadeInUp 1.2s ease 0.3s forwards; 
         }
         
-        .hero p.subtitle { 
+        .hero p.subtitle-prince { 
             font-family: 'Cormorant Garamond', serif;
             font-weight: 400; 
             color: #888; 
-            margin-top: 20px; 
+            margin-top: 15px; 
             font-size: 1.4rem; 
             letter-spacing: 2px; 
             font-style: italic; 
-            max-width: 600px;
-            line-height: 1.6;
             opacity: 0;
-            animation: fadeInUp 1.5s ease 0.8s forwards; 
+            animation: fadeInUp 1.2s ease 0.6s forwards; 
         }
 
-        /* COMPTEURS DE STATISTIQUES */
+        /* COMPTEURS DE STATISTIQUES AVEC LIGNES DE SÉPARATION */
         .stats-container {
             display: flex;
-            gap: 40px;
-            margin: 40px 0 30px 0;
+            align-items: center;
+            margin: 35px 0;
             opacity: 0;
-            animation: fadeInUp 1.5s ease 1.2s forwards;
+            animation: fadeInUp 1.2s ease 0.9s forwards;
         }
         .stat-item {
             text-align: center;
+            padding: 0 30px;
+        }
+        /* Fines lignes de séparation */
+        .stat-divider {
+            width: 1px;
+            height: 35px;
+            background-color: rgba(255, 255, 255, 0.08);
         }
         .stat-number {
             font-family: 'Cormorant Garamond', serif;
             font-size: 1.8rem;
             color: #ecd7be;
-            margin-bottom: 5px;
+            margin-bottom: 4px;
         }
         .stat-label {
             font-size: 0.65rem;
             letter-spacing: 2px;
-            color: #555;
+            color: #444;
             text-transform: uppercase;
         }
 
-        /* BOUTON DOUDREAM STYLE */
+        /* PHRASE D'INTRODUCTION POSITIONNÉE EN DESSOUS */
+        .hero p.subtitle-long {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 200;
+            color: #777;
+            font-size: 0.95rem;
+            letter-spacing: 1px;
+            max-width: 550px;
+            line-height: 1.6;
+            margin-bottom: 35px;
+            opacity: 0;
+            animation: fadeInUp 1.2s ease 1.1s forwards;
+        }
+
+        /* BOUTON OVALE STYLISÉ */
         .hero-btn {
             background-color: #d8a26b;
             color: #111;
@@ -151,25 +169,26 @@
             font-weight: 500;
             cursor: pointer;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(216, 162, 107, 0.2);
+            box-shadow: 0 4px 15px rgba(216, 162, 107, 0.15);
             opacity: 0;
-            animation: fadeInUp 1.5s ease 1.4s forwards;
+            animation: fadeInUp 1.2s ease 1.3s forwards;
         }
         .hero-btn:hover {
             background-color: #ecd7be;
             transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(236, 215, 190, 0.3);
         }
         
-        .content-section { padding-top: 60px; max-width: 1200px; margin: 0 auto; }
+        /* SECTION GLOBAL */
+        .content-section { padding: 100px 20px 40px 20px; max-width: 1200px; margin: 0 auto; }
+        .section-title { font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; font-weight: 400; text-align: center; letter-spacing: 4px; color: #ecd7be; margin-bottom: 40px; }
 
-        /* Menu de la Galerie */
-        nav.gallery-nav { display: flex; justify-content: center; gap: 15px; margin: 40px 0; flex-wrap: wrap; }
+        /* Menu Galerie */
+        nav.gallery-nav { display: flex; justify-content: center; gap: 15px; margin: 20px 0 40px 0; flex-wrap: wrap; }
         .filter-btn { background: none; border: 1px solid #1a1a22; color: #444; padding: 10px 25px; border-radius: 25px; cursor: pointer; transition: all 0.4s ease; font-size: 0.85rem; letter-spacing: 1px; }
         .filter-btn:hover, .filter-btn.active { border-color: #888; color: #fff; background-color: #ffffff04; }
 
         /* Grille Pinterest */
-        .gallery { column-count: 3; column-gap: 30px; padding: 20px; margin-bottom: 60px; }
+        .gallery { column-count: 3; column-gap: 30px; }
         @media (max-width: 900px) { .gallery { column-count: 2; } }
         @media (max-width: 600px) { .gallery { column-count: 1; } }
         
@@ -181,12 +200,20 @@
         .gallery-item:hover { border-color: #555; box-shadow: 0 15px 30px rgba(0,0,0,0.5); }
         .gallery-item:hover img { transform: scale(1.02); }
         
-        /* Lightbox */
-        .lightbox { display: none; position: fixed; z-index: 999; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(5, 5, 7, 0.98); justify-content: center; align-items: center; cursor: zoom-out; }
-        .lightbox img { max-width: 95%; max-height: 95%; object-fit: contain; border: 1px solid #1a1a22; box-shadow: 0 0 60px rgba(0,0,0,0.9); }
-        .close-btn { position: absolute; top: 20px; right: 30px; color: #fff; font-size: 40px; font-weight: 200; cursor: pointer; }
+        /* SECTION À PROPOS EXTENSION */
+        .about-box { max-width: 700px; margin: 0 auto; text-align: center; line-height: 1.8; color: #aaa; font-weight: 300; font-size: 1rem; }
+        .about-box strong { color: #ecd7be; font-weight: 500; display: block; margin-bottom: 10px; font-size: 1.2rem; font-family: 'Cormorant Garamond', serif; letter-spacing: 1px; }
 
-        footer { text-align: center; padding: 80px 20px; color: #222; font-size: 0.8rem; border-top: 1px solid #111; }
+        /* SECTION CONTACT EXTENSION */
+        .contact-box { max-width: 600px; margin: 0 auto; text-align: center; }
+        .mail-link { display: inline-block; font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; color: #d8a26b; text-decoration: none; margin-top: 10px; transition: color 0.3s; letter-spacing: 1px; }
+        .mail-link:hover { color: #ecd7be; }
+
+        /* Lightbox */
+        .lightbox { display: none; position: fixed; z-index: 9999; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(5, 5, 7, 0.98); justify-content: center; align-items: center; cursor: zoom-out; }
+        .lightbox img { max-width: 95%; max-height: 95%; object-fit: contain; border: 1px solid #1a1a22; box-shadow: 0 0 60px rgba(0,0,0,0.9); }
+        
+        footer { text-align: center; padding: 80px 20px; color: #222; font-size: 0.8rem; border-top: 1px solid #111; margin-top: 60px; }
 
         @keyframes fadeInUp {
             from { opacity: 0; transform: translateY(15px); }
@@ -200,9 +227,9 @@
 </head>
 <body>
 
-    <!-- MENUS DE NAVIGATION SUPÉRIEUR -->
+    <!-- NAV BAR SUPÉRIEURE EN PERMANENCE VISIBLE -->
     <header class="top-nav">
-        <a href="#" class="nav-logo">ED</a>
+        <div class="nav-logo" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">ED</div>
         <div class="nav-links">
             <a href="#portfolio-content">Portfolio</a>
             <a href="#about">À propos</a>
@@ -211,46 +238,16 @@
         </div>
     </header>
 
-    <!-- SECTION HERO REVISITÉE -->
+    <!-- ACCUEIL PRINCIPAL -->
     <section class="hero">
         <img class="avatar" src="guerriere.jpg" alt="ED Avatar">
-        <div class="hero-tag">Artiste Illustratrice</div>
+        <div class="hero-tag">Illustrateur & Concept Artist</div>
         <h1>ED</h1>
-        <p class="subtitle">« Dessine-moi... »<br>Chaque illustration est un voyage au cœur de l'imaginaire.</p>
+        <p class="subtitle_prince" style="font-family: 'Cormorant Garamond', serif; color: #888; margin-top: 15px; font-size: 1.4rem; letter-spacing: 2px; font-style: italic; opacity: 0; animation: fadeInUp 1.2s ease 0.6s forwards;">« Dessine-moi... »</p>
         
-        <!-- LES STATISTIQUES ARTISTIQUES -->
+        <!-- COMPTEURS AVEC SEPARATEURS -->
         <div class="stats-container">
             <div class="stat-item">
                 <div class="stat-number">4</div>
                 <div class="stat-label">Œuvres</div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-number">2</div>
-                <div class="stat-label">Univers</div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-number">2026</div>
-                <div class="stat-label">En cours</div>
-            </div>
-        </div>
-
-        <button class="hero-btn" onclick="scrollToGallery()">Découvrir le portfolio ↓</button>
-    </section>
-
-    <!-- SECTION GALERIE -->
-    <section id="portfolio-content" class="content-section">
-        <nav class="gallery-nav">
-            <button class="filter-btn active" onclick="filterGallery('tout', this)">Tout</button>
-            <button class="filter-btn" onclick="filterGallery('contes', this)">Contes & Légendes</button>
-            <button class="filter-btn" onclick="filterGallery('portraits', this)">Portraits d'Âmes</button>
-            <button class="filter-btn" onclick="filterGallery('creatures', this)">Créatures & Fantasy</button>
-            <button class="filter-btn" onclick="filterGallery('croquis', this)">Recherches & Ombres</button>
-        </nav>
-
-        <main class="gallery">
-            <div class="gallery-item" data-category="contes" onclick="openLightbox('crossover1.jpg')">
-                <img src="crossover1.jpg" alt="Dessin ED">
-            </div>
-            <div class="gallery-item" data-category="contes" onclick="openLightbox('chatelaine.jpg')">
-                <img src="chatelaine.jpg" alt="Dessin ED">
             </div>
