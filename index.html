@@ -7,34 +7,60 @@
     <link href="https://googleapis.com" rel="stylesheet">
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; }
-       body { background-color: #0c0c0e; background-image: radial-gradient(at 20% 20%, #151419 0px, transparent 50%), radial-gradient(at 80% 40%, #111115 0px, transparent 50%), radial-gradient(at 40% 80%, #08080a 0px, transparent 50%); color: #ffffff; font-family: 'Montserrat', sans-serif; overflow-x: hidden; }
-
-        header { padding: 60px 20px 20px 20px; text-align: center; }
-        h1 { font-weight: 600; letter-spacing: 8px; font-size: 3rem; color: #fff; }
-        p.subtitle { font-weight: 300; color: #666; margin-top: 15px; font-size: 1.1rem; letter-spacing: 3px; font-style: italic; }
         
-        /* Menu des Catégories */
+        /* FOND CRÉATIF : Effet aquarelle brumeuse style Burton */
+        body { 
+            background-color: #0c0c0e; 
+            background-image: 
+                radial-gradient(at 10% 20%, #17161d 0px, transparent 40%), 
+                radial-gradient(at 90% 10%, #121116 0px, transparent 40%), 
+                radial-gradient(at 50% 80%, #09090b 0px, transparent 50%);
+            color: #ffffff; 
+            font-family: 'Montserrat', sans-serif; 
+            overflow-x: hidden; 
+        }
+        
+        header { padding: 70px 20px 20px 20px; text-align: center; }
+        h1 { font-weight: 600; letter-spacing: 10px; font-size: 3.5rem; color: #fff; }
+        p.subtitle { font-weight: 300; color: #777; margin-top: 15px; font-size: 1.1rem; letter-spacing: 4px; font-style: italic; }
+        
+        /* Menu des Catégories Épuré */
         nav { display: flex; justify-content: center; gap: 15px; margin: 40px 0; flex-wrap: wrap; }
-        .filter-btn { background: none; border: 1px solid #222; color: #555; padding: 10px 25px; border-radius: 25px; cursor: pointer; transition: all 0.3s; font-size: 0.85rem; }
-        .filter-btn:hover, .filter-btn.active { border-color: #fff; color: #fff; background-color: #ffffff0a; }
+        .filter-btn { background: none; border: 1px solid #222; color: #555; padding: 10px 25px; border-radius: 25px; cursor: pointer; transition: all 0.4s ease; font-size: 0.85rem; letter-spacing: 1px; }
+        .filter-btn:hover, .filter-btn.active { border-color: #fff; color: #fff; background-color: #ffffff07; box-shadow: 0 0 15px rgba(255,255,255,0.03); }
 
-        /* Grille de la Galerie Épurée */
-        .gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 30px; padding: 20px; max-width: 1200px; margin: 0 auto; }
-        .gallery-item { position: relative; overflow: hidden; border-radius: 4px; background-color: #121212; border: 1px solid #1a1a1a; cursor: pointer; transition: all 0.4s ease; }
+        /* Grille de la Galerie Fluide */
+        .gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 35px; padding: 20px; max-width: 1200px; margin: 0 auto; }
         
-        /* Image visible à 100% tout le temps */
-        .gallery-item img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.4s ease; }
+        /* Animation d'apparition douce des cartes */
+        .gallery-item { 
+            position: relative; 
+            overflow: hidden; 
+            border-radius: 4px; 
+            background-color: #121215; 
+            border: 1px solid #1a1a1f; 
+            cursor: pointer; 
+            transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1); 
+            animation: fadeIn 1s ease forwards;
+        }
         
-        /* Effet au survol doux (comme DouDream) */
-        .gallery-item:hover { border-color: #666; box-shadow: 0 0 20px rgba(255,255,255,0.05); }
-        .gallery-item:hover img { transform: scale(1.03); }
+        .gallery-item img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.6s cubic-bezier(0.25, 0.8, 0.25, 1); }
         
-        /* Système pour agrandir au clic (Lightbox) */
-        .lightbox { display: none; position: fixed; z-index: 999; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(5, 5, 5, 0.95); justify-content: center; align-items: center; cursor: zoom-out; }
-        .lightbox img { max-width: 90%; max-height: 90%; object-fit: contain; border: 1px solid #222; box-shadow: 0 0 50px rgba(0,0,0,0.8); }
+        /* Effet au survol : zoom doux + lueur élégante */
+        .gallery-item:hover { border-color: #666; box-shadow: 0 15px 35px rgba(0,0,0,0.6); }
+        .gallery-item:hover img { transform: scale(1.04); }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* Agrandissement au clic (Lightbox) */
+        .lightbox { display: none; position: fixed; z-index: 999; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(6, 6, 8, 0.97); justify-content: center; align-items: center; cursor: zoom-out; animation: fadeIn 0.2s ease; }
+        .lightbox img { max-width: 90%; max-height: 90%; object-fit: contain; border: 1px solid #222; box-shadow: 0 0 60px rgba(0,0,0,0.9); }
         .close-btn { position: absolute; top: 20px; right: 30px; color: #fff; font-size: 40px; font-weight: 300; cursor: pointer; }
 
-        footer { text-align: center; padding: 60px 20px; color: #222; font-size: 0.8rem; margin-top: 80px; }
+        footer { text-align: center; padding: 80px 20px; color: #222; font-size: 0.8rem; margin-top: 100px; }
     </style>
 </head>
 <body>
@@ -44,22 +70,22 @@
         <p class="subtitle">« Dessine-moi... »</p>
         
         <nav>
-            <button class="filter-btn active">Tout</button>
-            <button class="filter-btn">Concept Art & Fantasy</button>
-            <button class="filter-btn">Portraits & Fan-Arts</button>
-            <button class="filter-btn">Illustration & Édition</button>
-            <button class="filter-btn">Croquis</button>
+            <button class="filter-btn active" onclick="filterGallery('tout', this)">Tout</button>
+            <button class="filter-btn" onclick="filterGallery('fantasy', this)">Concept Art & Fantasy</button>
+            <button class="filter-btn" onclick="filterGallery('portraits', this)">Portraits & Fan-Arts</button>
+            <button class="filter-btn" onclick="filterGallery('edition', this)">Illustration & Édition</button>
+            <button class="filter-btn" onclick="filterGallery('croquis', this)">Croquis</button>
         </nav>
     </header>
 
     <main class="gallery">
-        <!-- DESSIN 1 -->
-        <div class="gallery-item" onclick="openLightbox('crossover1.jpg')">
+        <!-- DESSIN 1 (Rangé dans la catégorie "edition") -->
+        <div class="gallery-item" data-category="edition" onclick="openLightbox('crossover1.jpg')">
             <img src="crossover1.jpg" alt="Dessin ED">
         </div>
     </main>
 
-    <!-- Fenêtre pour l'agrandissement au clic -->
+    <!-- Fenêtre d'agrandissement -->
     <div id="customLightbox" class="lightbox" onclick="closeLightbox()">
         <span class="close-btn">&times;</span>
         <img id="lightboxImg" src="" alt="Agrandissement">
@@ -70,6 +96,7 @@
     </footer>
 
     <script>
+        /* Logique pour la Lightbox */
         function openLightbox(imageSrc) {
             document.getElementById('lightboxImg').src = imageSrc;
             document.getElementById('customLightbox').style.display = 'flex';
@@ -77,8 +104,23 @@
         function closeLightbox() {
             document.getElementById('customLightbox').style.display = 'none';
         }
+
+        /* Logique intelligente pour filtrer les dessins */
+        function filterGallery(category, button) {
+            // Activer le bon bouton visuellement
+            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+            button.classList.add('active');
+
+            // Filtrer les images
+            document.querySelectorAll('.gallery-item').forEach(item => {
+                if (category === 'tout' || item.getAttribute('data-category') === category) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
     </script>
 
 </body>
 </html>
-
