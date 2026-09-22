@@ -138,14 +138,16 @@
     <section id="portfolio-content" class="content-section">
         <h2 class="section-title">Portfolio</h2>
         
-        <!-- LES BOUTONS DES CATÉGORIES -->
+                <!-- LES BOUTONS DES CATÉGORIES -->
         <nav class="gallery-nav">
-            <button class="filter-btn active" onclick="filterGallery('tout', this)">Tout</button>
+            <button class="filter-btn active" onclick="filterGallery('selection', this)">Sélection</button>
             <button class="filter-btn" onclick="filterGallery('contes', this)">Contes & Légendes</button>
             <button class="filter-btn" onclick="filterGallery('portraits', this)">Portraits d'Âmes</button>
             <button class="filter-btn" onclick="filterGallery('creatures', this)">Créatures & Fantasy</button>
             <button class="filter-btn" onclick="filterGallery('croquis', this)">Recherches & Ombres</button>
+            <button class="filter-btn" onclick="filterGallery('tout', this)">Tout</button>
         </nav>
+
 
         <!-- 👇 LISTE DES DESSINS : POUR MODIFIER LES FICHIERS ET LES CATÉGORIES -->
         <main class="gallery">
@@ -212,7 +214,31 @@
         function scrollToGallery() { var el = document.getElementById('portfolio-content'); if(el) el.scrollIntoView({ behavior: 'smooth' }); }
         function openLightbox(imageSrc) { var lb = document.getElementById('customLightbox'); var img = document.getElementById('lightboxImg'); if(lb && img) { img.src = imageSrc; lb.style.display = 'flex'; } }
         function closeLightbox() { var lb = document.getElementById('customLightbox'); if(lb) lb.style.display = 'none'; }
-        function filterGallery(category, button) { var buttons = document.querySelectorAll('.filter-btn'); for (var i = 0; i < buttons.length; i++) { buttons[i].classList.remove('active'); } if(button) button.classList.add('active'); var items = document.querySelectorAll('.gallery-item'); for (var j = 0; j < items.length; j++) { var item = items[j]; if (category === 'tout' || item.getAttribute('data-category') === category) { item.style.display = 'block'; } else { item.style.display = 'none'; } } }
+        function filterGallery(category, button) {
+            var buttons = document.querySelectorAll('.filter-btn');
+            for (var i = 0; i < buttons.length; i++) { buttons[i].classList.remove('active'); }
+            if(button) button.classList.add('active'); 
+            
+            var items = document.querySelectorAll('.gallery-item');
+            for (var j = 0; j < items.length; j++) {
+                var item = items[j];
+                if (category === 'selection') {
+                    if (item.getAttribute('data-favori') === 'oui') {
+                        item.style.display = 'block';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                } 
+                else if (category === 'tout' || item.getAttribute('data-category') === category) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            }
+        }
+        window.addEventListener('DOMContentLoaded', function() {
+            filterGallery('selection', document.querySelector('.filter-btn.active'));
+        });
     </script>
 
 </body>
