@@ -214,7 +214,7 @@
         <p>&copy; 2026 ED. Tous droits réservés.</p>
     </footer>
 
-    <script>
+        <script>
         var currentVisibleImages = [];
         var currentImgIndex = 0;
 
@@ -227,7 +227,6 @@
             var lb = document.getElementById('customLightbox'); 
             var img = document.getElementById('lightboxImg'); 
             if(lb && img) {
-                // Créer la liste des images actuellement affichées à l'écran (respecte les filtres)
                 currentVisibleImages = [];
                 document.querySelectorAll('.gallery-item').forEach(function(item) {
                     if (item.style.display !== 'none') {
@@ -236,9 +235,7 @@
                     }
                 });
                 
-                // Trouver la position de l'image cliquée dans la liste
                 currentImgIndex = currentVisibleImages.indexOf(imageSrc);
-                
                 img.src = imageSrc; 
                 lb.style.display = 'flex'; 
             } 
@@ -249,9 +246,17 @@
             if(lb) lb.style.display = 'none'; 
         }
 
+        // FERMER L'IMAGE EN CLIQUANT DANS LE NOIR AUTOUR
+        window.addEventListener('click', function(e) {
+            var lb = document.getElementById('customLightbox');
+            // Si on clique sur la fenêtre noire elle-même (et pas sur l'image ou les flèches), on ferme !
+            if (e.target === lb) {
+                closeLightbox();
+            }
+        });
+
         function changeImage(direction) {
             currentImgIndex += direction;
-            // Gestion de la boucle (si on dépasse, on revient au début ou à la fin)
             if (currentImgIndex >= currentVisibleImages.length) currentImgIndex = 0;
             if (currentImgIndex < 0) currentImgIndex = currentVisibleImages.length - 1;
             
@@ -260,6 +265,21 @@
                 img.src = currentVisibleImages[currentImgIndex];
             }
         }
+
+        // NAVIGUER AVEC LES FLÈCHES DU CLAVIER (Gauche, Droite, Échap)
+        document.addEventListener('keydown', function(e) {
+            var lb = document.getElementById('customLightbox');
+            // On vérifie que la fenêtre en grand est bien ouverte avant d'écouter le clavier
+            if (lb && lb.style.display === 'flex') {
+                if (e.key === 'ArrowRight') {
+                    changeImage(1);  // Flèche droite du clavier -> Suivant
+                } else if (e.key === 'ArrowLeft') {
+                    changeImage(-1); // Flèche gauche du clavier -> Précédent
+                } else if (e.key === 'Escape') {
+                    closeLightbox(); // Touche Échap -> Fermer
+                }
+            }
+        });
 
         function filterGallery(category, button) { 
             var buttons = document.querySelectorAll('.filter-btn'); 
