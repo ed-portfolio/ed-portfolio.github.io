@@ -150,27 +150,24 @@
 
 
         <!-- 👇 LISTE DES DESSINS : POUR MODIFIER LES FICHIERS ET LES CATÉGORIES -->
-        <main class="gallery">
-            <!-- Dessin 1 -->
-            <div class="gallery-item" data-category="contes" onclick="openLightbox('crossover1.jpg')">
-                <img src="crossover1.jpg" alt="Dessin ED">
-            </div>
-            <!-- Dessin 2 -->
-            <div class="gallery-item" data-category="contes" onclick="openLightbox('chatelaine.jpg')">
-                <img src="chatelaine.jpg" alt="Dessin ED">
-            </div>
-            <!-- Dessin 3 -->
-            <div class="gallery-item" data-category="contes" onclick="openLightbox('chateau.jpg')">
-                <img src="chateau.jpg" alt="Dessin ED">
-            </div>
-            <!-- Dessin 4 -->
-            <div class="gallery-item" data-category="creatures" onclick="openLightbox('guerriere.jpg')">
-                <img src="guerriere.jpg" alt="Dessin ED">
-            </div>
-            <div class="gallery-item" data-category="creatures" onclick="openLightbox('dragon.jpg')">
-                <img src="dragon.jpg" alt="Dessin ED">
-            </div>
+                <main class="gallery">
+            <!-- Dessin 1 : Renard (AFFICHÉ à l'accueil) -->
+            <div class="gallery-item" data-category="contes" data-favori="oui" onclick="openLightbox('crossover1.jpg')"><img src="crossover1.jpg" alt="Dessin ED"></div>
+
+            <!-- Dessin 2 : Chatelaine (MASQUÉ à l'accueil, s'affiche dans sa catégorie) -->
+            <div class="gallery-item" data-category="contes" data-favori="non" onclick="openLightbox('chatelaine.jpg')"><img src="chatelaine.jpg" alt="Dessin ED"></div>
+
+            <!-- Dessin 3 : Château (MASQUÉ à l'accueil, s'affiche dans sa catégorie) -->
+            <div class="gallery-item" data-category="contes" data-favori="non" onclick="openLightbox('chateau.jpg')"><img src="chateau.jpg" alt="Dessin ED"></div>
+
+            <!-- Dessin 4 : Guerrière (AFFICHÉ à l'accueil) -->
+            <div class="gallery-item" data-category="creatures" data-favori="oui" onclick="openLightbox('guerriere.jpg')"><img src="guerriere.jpg" alt="Dessin ED"></div>
+
+           <!-- Dessin 5 : Dragon (MASQUÉ à l'accueil, s'affiche dans sa catégorie) -->
+          <div class="gallery-item" data-category="creatures" data-favori="non" onclick="openLightbox('dragon.jpg')"><img src="dragon.jpg" alt="Dessin ED"></div>
+        
         </main>
+
     </section>
 
     <!-- ========================================================
