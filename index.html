@@ -6,7 +6,7 @@
     <title>ED - Portfolio d'Illustration</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Montserrat:wght@300;400;500;600&family=UnifrakturCook:wght@700&display=swap" rel="stylesheet">
 
     
     <style>
@@ -145,7 +145,7 @@ body {
             .hero-copy { position: relative; top: 42px; }
         }
 
-        /* Palette bleu lunaire inspirée de la lune d’Avatar.png */
+        /* Palette bleu lunaire inspirée de la lune d’Accueil.png */
         body, .nav-logo, .nav-links a, .nav-links a:hover, .insta-icon,
         .hero-tag, .hero h1, .hero-copy .hero-tag, .hero-copy h1,
         .hero p.subtitle-prince, .hero-copy .subtitle-prince,
@@ -162,6 +162,36 @@ body {
         }
         .hero-copy .hero-btn:hover { background: rgba(184,201,224,.13); }
         .hero-divider { background: linear-gradient(90deg, transparent, #b8c9e0, transparent); }
+
+        /* Accueil : portrait plus imposant, sans déformation ni recadrage */
+        @media (min-width: 761px) {
+            .hero-layout { grid-template-columns: minmax(0, 1.24fr) minmax(0, .76fr); gap: clamp(12px, 2vw, 35px); }
+            .hero-art img { width: 118%; max-width: none; height: auto; max-height: 92vh; object-fit: contain; }
+            .hero-art { top: -55px; }
+            .hero-copy { top: 20px; }
+        }
+        /* ED : typographie gothique dans l'esprit de l'exemple fourni */
+        .hero-copy h1 {
+            font-family: 'UnifrakturCook', 'Times New Roman', serif;
+            font-weight: 700;
+            letter-spacing: 0;
+            font-size: clamp(7rem, 12vw, 12rem);
+            line-height: 1.12;
+        }
+        /* Citation : même typographie que le sous-titre Illustratrice */
+        .hero-copy .subtitle-prince {
+            font-family: 'Montserrat', sans-serif;
+            font-style: normal;
+            font-weight: 400;
+            font-size: .92rem;
+            letter-spacing: .25em;
+            text-transform: none;
+        }
+        @media (max-width: 760px) {
+            .hero-art img { width: 100%; max-width: 520px; height: auto; }
+            .hero-copy h1 { font-size: clamp(6rem, 24vw, 9rem); }
+            .hero-copy .subtitle-prince { font-size: .8rem; letter-spacing: .16em; }
+        }
     </style>
 </head>
     <body>
@@ -188,7 +218,7 @@ body {
     <section class="hero hero-redesign">
         <div class="hero-layout">
             <div class="hero-art">
-                <!-- Image de l’accueil : Avatar.png -->
+                <!-- Image de l’accueil : Accueil.png -->
                 <img src="Accueil.png" alt="Illustration originale d'une guerrière par ED">
             </div>
             <div class="hero-copy">
