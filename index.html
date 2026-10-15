@@ -98,7 +98,7 @@ body {
         .hero.hero-redesign { min-height: 100vh; height: auto; padding: 76px 32px 36px; gap: 18px; }
         .hero-layout { width: 100%; max-width: 1640px; display: grid; grid-template-columns: minmax(0, 1.12fr) minmax(0, 0.88fr); gap: clamp(20px, 3vw, 60px); align-items: center; }
         .hero-art { display: flex; justify-content: center; align-items: center; min-width: 0; }
-        .hero-art img { display: block; width: auto; max-width: 130%; height: min(88vh, 960px); object-fit: contain; border: none; box-shadow: none; }
+        .hero-art img { display: block; width: auto; max-width: 100%; height: min(88vh, 960px); object-fit: contain; border: none; box-shadow: none; }
         .hero-copy { display: flex; flex-direction: column; align-items: center; text-align: center; padding: 0 10px; }
         .hero-copy .hero-tag { margin-bottom: 25px; color: #d6c6b9; font-size: .75rem; }
         .hero-copy h1 { font-size: clamp(6rem, 11vw, 11rem); line-height: 1; margin-bottom: 24px; }
@@ -137,6 +137,31 @@ body {
             .hero-art, .hero-copy, .scroll-cue span { animation: none; }
         }
 
+
+        /* Alignement visuel : halo remonté, texte centré face au portrait.
+           top conserve l’animation d’apparition basée sur transform. */
+        @media (min-width: 761px) {
+            .hero-art { position: relative; top: -42px; }
+            .hero-copy { position: relative; top: 42px; }
+        }
+
+        /* Palette bleu lunaire inspirée de la lune d’Avatar.png */
+        body, .nav-logo, .nav-links a, .nav-links a:hover, .insta-icon,
+        .hero-tag, .hero h1, .hero-copy .hero-tag, .hero-copy h1,
+        .hero p.subtitle-prince, .hero-copy .subtitle-prince,
+        .hero p.subtitle-long, .hero-copy .subtitle-long,
+        .stat-number, .stat-label, .hero-redesign .stat-label,
+        .section-title, .filter-btn, .filter-btn:hover, .filter-btn.active,
+        .about-box, .about-box strong, .mail-link, .mail-link:hover,
+        .scroll-cue, .scroll-cue:hover, footer {
+            color: #b8c9e0 !important;
+        }
+        .hero-btn, .hero-copy .hero-btn, .hero-copy .hero-btn:hover {
+            color: #b8c9e0 !important;
+            border-color: #b8c9e0 !important;
+        }
+        .hero-copy .hero-btn:hover { background: rgba(184,201,224,.13); }
+        .hero-divider { background: linear-gradient(90deg, transparent, #b8c9e0, transparent); }
     </style>
 </head>
     <body>
@@ -164,7 +189,7 @@ body {
         <div class="hero-layout">
             <div class="hero-art">
                 <!-- Image de l’accueil : Avatar.png -->
-                <img src="Avatar png.png" alt="Illustration originale d'une guerrière par ED">
+                <img src="Avatar.png" alt="Illustration originale d'une guerrière par ED">
             </div>
             <div class="hero-copy">
                 <p class="hero-tag">Illustratrice &amp; Concept Artist</p>
@@ -231,7 +256,7 @@ body {
         <div class="about-box">
             <!-- 👇 MODIFIER SON NOM COMPLET ET SON ÉCOLE ICI -->
             <strong>Emily Devaud — Illustrateur & Concept Artist</strong>
-            Diplômée de l'école <a href="https://institutartline.com/" target="_blank" style="color: #ecd7be; font-weight: 500; text-decoration: underline;">Institut Artline</a>
+            Diplômée de l'école <a href="https://institutartline.com/" target="_blank" style="color: #b8c9e0; font-weight: 500; text-decoration: underline;">Institut Artline</a>
 , mon travail s'articule autour de la création d'univers poétiques, de décors oniriques et de créatures fantastiques. Mêlant des inspirations issues des contes classiques et des esthétiques graphiques sombres, je cherche à donner à chaque illustration une âme unique.
         </div>
     </section>
@@ -242,7 +267,7 @@ body {
     <section id="contact" class="content-section" style="border-top: 1px solid rgba(255,255,255,0.02); padding-top: 80px;">
         <h2 class="section-title">Contact</h2>
         <div class="contact-box">
-            <p style="color: #666; font-size: 0.95rem; letter-spacing: 1px;">Pour toute demande de collaboration, de projet ou d'information :</p>
+            <p style="color: #b8c9e0; font-size: 0.95rem; letter-spacing: 1px;">Pour toute demande de collaboration, de projet ou d'information :</p>
             <!-- 👇 MODIFIER SON ADRESSE MAIL ICI (SUR LES DEUX LIGNES) -->
             <a href="mailto:devaudemily@gmail.com" class="mail-link">devaudemily@gmail.com</a>
         </div>
