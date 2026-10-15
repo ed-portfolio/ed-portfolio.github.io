@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ED - Portfolio d'Illustration</title>
-  <link href="https://googleapis.com" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
 
     
     <style>
@@ -28,24 +30,7 @@ body {
 }
 
 
-
-.top-nav {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 25px 40px;
-    z-index: 1000;
-
-    background-color: rgba(0, 0, 0, 0.05);
-    backdrop-filter: blur(3px);
-    -webkit-backdrop-filter: blur(3px);
-    border-bottom: none;
-}
-
+.top-nav { position: fixed; top: 0; left: 0; width: 100%; display: flex; justify-content: space-between; align-items: center; padding: 20px 32px; z-index: 1000; background: rgba(0,0,0,.15); backdrop-filter: blur(1px); -webkit-backdrop-filter: blur(1px); border-bottom: none; }
 
 .nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; letter-spacing: 2px; color: #ecd7be; text-decoration: none; cursor: pointer; }
 .nav-links { display: flex; align-items: center; gap: 30px; }
@@ -108,6 +93,31 @@ body {
         footer { text-align: center; padding: 80px 20px; color: #222; font-size: 0.8rem; border-top: 1px solid #111; margin-top: 80px; }
                 
 
+
+        /* ACCUEIL REDESSINÉ : IMAGE ENTIÈRE À GAUCHE, TEXTE À DROITE */
+        .hero.hero-redesign { min-height: 100vh; height: auto; padding: 135px 32px 65px; gap: 58px; }
+        .hero-layout { width: 100%; max-width: 1220px; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 0.9fr); gap: clamp(35px, 6vw, 105px); align-items: center; }
+        .hero-art { display: flex; justify-content: center; align-items: center; min-width: 0; }
+        .hero-art img { display: block; width: 100%; max-width: 510px; height: auto; max-height: 72vh; object-fit: contain; border: 1px solid rgba(236,215,190,.16); box-shadow: 0 24px 65px rgba(0,0,0,.38); }
+        .hero-copy { display: flex; flex-direction: column; align-items: center; text-align: center; }
+        .hero-copy .hero-tag { margin-bottom: 25px; color: #c4b6aa; }
+        .hero-copy h1 { font-size: clamp(5rem, 10vw, 8rem); line-height: 1; margin-bottom: 22px; }
+        .hero-copy .subtitle-prince { color: #d2c1b2; margin-bottom: 26px; }
+        .hero-divider { height: 1px; width: 125px; background: linear-gradient(90deg, transparent, #d8a26b, transparent); margin-bottom: 27px; }
+        .hero-copy .subtitle-long { color: #c5c0bc; font-weight: 300; margin-bottom: 38px; }
+        .hero-redesign > .stats-block { margin: 0; max-width: 450px; }
+        .hero-redesign .stat-label { color: #a8a09a; }
+        @media (max-width: 760px) {
+            .top-nav { padding: 16px 14px; }
+            .nav-links { gap: 12px; }
+            .nav-links a { font-size: .72rem; letter-spacing: 0; }
+            .hero.hero-redesign { padding: 110px 20px 45px; gap: 40px; }
+            .hero-layout { grid-template-columns: 1fr; gap: 34px; }
+            .hero-art img { max-width: 440px; max-height: none; }
+            .hero-copy h1 { font-size: 5.5rem; }
+            .stats-container { gap: clamp(22px, 8vw, 60px); }
+        }
+
     </style>
 </head>
     <body>
@@ -131,23 +141,23 @@ body {
     <!-- ========================================================
        SECTION EN PLEIN ÉCRAN : ACCUEIL DU PORTFOLIO
        ======================================================== -->
-    <section class="hero">
-        <!-- 👇 MODIFIER LE NOM DE L'IMAGE DE L'AVATAR ICI -->
-        <img class="avatar" src="guerriere.jpg" alt="ED Avatar">
-        
-        <!-- 👇 MODIFIER SON INTITULÉ DE MÉTIER ICI -->
-        <div class="hero-tag">Illustrateur & Concept Artist</div>
-        
-        <!-- 👇 MODIFIER SON PSEUDO D'ARTISTE ICI -->
-        <h1>ED</h1>
-        
-        <!-- 👇 MODIFIER LA CITATION DU PETIT PRINCE ICI -->
-        <p class="subtitle-prince">« Dessine-moi... »</p>
-        <hr class="prince-hr">
-        
-        <!-- 👇 MODIFIER LES CHIFFRES DES STATISTIQUES ICI -->
+    <section class="hero hero-redesign">
+        <div class="hero-layout">
+            <div class="hero-art">
+                <!-- Remplacer simplement guerriere.jpg sur GitHub lorsque le dessin sera terminé -->
+                <img src="guerriere.jpg" alt="Illustration originale d'une guerrière par ED">
+            </div>
+            <div class="hero-copy">
+                <p class="hero-tag">Illustratrice &amp; Concept Artist</p>
+                <h1>ED</h1>
+                <p class="subtitle-prince">« Dessine-moi... »</p>
+                <div class="hero-divider" aria-hidden="true"></div>
+                <p class="subtitle-long">Chaque illustration est un voyage au cœur de l'imaginaire.</p>
+                <button class="hero-btn" onclick="scrollToGallery()">Découvrir le portfolio ↓</button>
+            </div>
+        </div>
         <div class="stats-block">
-             <hr class="stats-hr">
+            <hr class="stats-hr">
             <div class="stats-container">
                 <div class="stat-item"><div class="stat-number">4</div><div class="stat-label">Œuvres</div></div>
                 <div class="stat-item"><div class="stat-number">2</div><div class="stat-label">Univers</div></div>
@@ -155,10 +165,6 @@ body {
             </div>
             <hr class="stats-hr">
         </div>
-
-        <!-- 👇 MODIFIER LA PHRASE DE PRÉSENTATION COURTE ICI -->
-        <p class="subtitle-long">Chaque illustration est un voyage au cœur de l'imaginaire.</p>
-        <button class="hero-btn" onclick="scrollToGallery()">Découvrir le portfolio ↓</button>
     </section>
 
     <!-- ========================================================
