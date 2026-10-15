@@ -107,7 +107,10 @@ body {
         .hero-copy .subtitle-long { color: #d4cdc7; font-weight: 300; font-size: 1rem; line-height: 1.85; margin-bottom: 38px; }
         .hero-copy .hero-btn { background: rgba(0,0,0,.12); color: #ecd7be; border: 1px solid #d8a26b; padding: 17px 38px; letter-spacing: 2px; text-transform: uppercase; }
         .hero-copy .hero-btn:hover { background: rgba(216,162,107,.16); }
-        .hero-redesign > .stats-block { margin: 8px 0 0; max-width: 450px; }
+        .hero-copy .stats-block { margin: 32px 0 0; width: 100%; max-width: 450px; }
+        .hero-copy .stats-container { gap: clamp(22px, 4vw, 65px); padding-top: 17px; padding-bottom: 17px; }
+        .hero-copy .subtitle-long { margin-bottom: 28px; }
+        .hero-copy .stat-number { font-size: 1.7rem; }
         .hero-redesign .stat-label { color: #a8a09a; }
         @media (max-width: 760px) {
             .top-nav { padding: 16px 14px; }
@@ -119,6 +122,23 @@ body {
             .hero-copy h1 { font-size: 6rem; }
             .hero-copy .subtitle-prince { font-size: 1.35rem; }
             .stats-container { gap: clamp(22px, 8vw, 60px); }
+        }
+
+
+        /* FINITIONS DE L'ACCUEIL : étoile, apparition douce et flèche */
+        .hero-divider-star { display: flex; align-items: center; justify-content: center; height: 24px; width: 190px; background: none; margin-bottom: 26px; color: #d8a26b; }
+        .hero-divider-star::before, .hero-divider-star::after { content: ""; height: 1px; flex: 1; background: linear-gradient(to right, transparent, rgba(216,162,107,.8)); }
+        .hero-divider-star::after { transform: rotate(180deg); }
+        .hero-divider-star span { font-size: 18px; line-height: 1; padding: 0 14px; }
+        .hero-art { animation: edReveal .95s ease-out both; }
+        .hero-copy { animation: edReveal 1s ease-out .22s both; }
+        @keyframes edReveal { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+        .scroll-cue { background: transparent; border: 0; color: #d8a26b; cursor: pointer; padding: 2px 24px 8px; margin-top: 4px; font-family: Georgia, serif; font-size: 2.1rem; line-height: 1; }
+        .scroll-cue span { display: inline-block; animation: edDown 2.4s ease-in-out infinite; }
+        .scroll-cue:hover { color: #ecd7be; }
+        @keyframes edDown { 0%,100% { transform: translateY(0); opacity: .65; } 50% { transform: translateY(7px); opacity: 1; } }
+        @media (prefers-reduced-motion: reduce) {
+            .hero-art, .hero-copy, .scroll-cue span { animation: none; }
         }
 
     </style>
@@ -154,12 +174,10 @@ body {
                 <p class="hero-tag">Illustratrice &amp; Concept Artist</p>
                 <h1>ED</h1>
                 <p class="subtitle-prince">« Dessine-moi... »</p>
-                <div class="hero-divider" aria-hidden="true"></div>
-                <p class="subtitle-long">Chaque illustration est un voyage au cœur de l'imaginaire.</p>
-                <button class="hero-btn" onclick="scrollToGallery()">Découvrir le portfolio ↓</button>
-            </div>
-        </div>
-        <div class="stats-block">
+                <div class="hero-divider hero-divider-star" aria-hidden="true"><span>✦</span></div>
+                <p class="subtitle-long">Des univers poétiques, des décors oniriques<br>et des créatures fantastiques.<br>Entre imagination et émotion.</p>
+                <button class="hero-btn" onclick="scrollToGallery()">Découvrir mon univers →</button>
+                <div class="stats-block">
             <hr class="stats-hr">
             <div class="stats-container">
                 <div class="stat-item"><div class="stat-number">4</div><div class="stat-label">Œuvres</div></div>
@@ -167,6 +185,9 @@ body {
                 <div class="stat-item"><div class="stat-number">2026</div><div class="stat-label">En cours</div></div>
             </div>
             <hr class="stats-hr">
+                </div>
+                <button class="scroll-cue" type="button" onclick="scrollToGallery()" aria-label="Descendre vers les œuvres"><span aria-hidden="true">⌄</span></button>
+            </div>
         </div>
     </section>
 
