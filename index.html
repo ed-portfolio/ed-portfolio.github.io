@@ -166,7 +166,7 @@ body {
         /* Accueil : portrait plus imposant, sans déformation ni recadrage */
         @media (min-width: 761px) {
             .hero-layout { grid-template-columns: minmax(0, 1.24fr) minmax(0, .76fr); gap: clamp(12px, 2vw, 35px); }
-            .hero-art img { width: 125%; max-width: none; height: auto; max-height: 92vh; object-fit: contain; }
+            .hero-art img { width: 118%; max-width: none; height: auto; max-height: 92vh; object-fit: contain; }
             .hero-art { top: -55px; }
             .hero-copy { top: 20px; }
         }
@@ -248,13 +248,15 @@ body {
         @media (min-width: 761px) {
             /* Agrandir sans rogner le halo : la hauteur reste plafonnée à la fenêtre. */
             .hero-art img {
-                width: 138%;
+                /* Taille réelle augmentée : empêcher le flex de réduire l’image */
+                flex: 0 0 auto;
+                width: min(60vw, 900px);
                 max-width: none;
                 height: auto;
-                max-height: min(94vh, 1020px);
+                max-height: calc(100vh - 115px);
                 object-fit: contain;
             }
-            .hero-art { top: -38px; }
+            .hero-art { top: -18px; overflow: visible; }
         }
         @media (max-width: 760px) {
             #portfolio-content > .section-title { font-size: clamp(3rem, 12vw, 4.5rem); }
