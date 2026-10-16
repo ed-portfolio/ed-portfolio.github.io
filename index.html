@@ -238,6 +238,27 @@ body {
             font-weight: 400;
             letter-spacing: .02em;
         }
+
+        /* Ajustements du 16 octobre : titre de galerie et dessin d'accueil */
+        #portfolio-content > .section-title {
+            font-size: clamp(3.8rem, 6.2vw, 5.8rem);
+            line-height: 1.18;
+            letter-spacing: .01em;
+        }
+        @media (min-width: 761px) {
+            /* Agrandir sans rogner le halo : la hauteur reste plafonnée à la fenêtre. */
+            .hero-art img {
+                width: 138%;
+                max-width: none;
+                height: auto;
+                max-height: min(94vh, 1020px);
+                object-fit: contain;
+            }
+            .hero-art { top: -38px; }
+        }
+        @media (max-width: 760px) {
+            #portfolio-content > .section-title { font-size: clamp(3rem, 12vw, 4.5rem); }
+        }
     </style>
 </head>
     <body>
