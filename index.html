@@ -350,7 +350,8 @@ body {
         }
         .gallery.voile-layout .voile-lame img {
             width: 100%;
-            height: min(43vh, 420px);
+            height: auto;
+            max-height: none;
             object-fit: contain;
         }
         .gallery.voile-layout .voile-lame::after {
@@ -469,11 +470,9 @@ body {
             <div class="gallery-item voile-turn" data-category="contes" data-favori="non" data-label="Turn épée" onclick="openLightbox('Le Monde du Voile - Turn épée.jpg')"><img src="Le Monde du Voile - Turn épée.jpg" alt="Le Monde du Voile - Turn épée"></div>
             <div class="gallery-item voile-mock1" data-category="contes" data-favori="non" data-label="Mockup 01" onclick="openLightbox('Le Monde du Voile -Mockup 01.png')"><img src="Le Monde du Voile -Mockup 01.png" alt="Le Monde du Voile - Mockup 01"></div>
 
-            <!-- Dessin 4 : Guerrière (VISIBLE à l'accueil, s'affiche dans sa catégorie) -->
-            <div class="gallery-item" data-category="creatures" data-favori="oui" onclick="openLightbox('guerriere.jpg')"><img src="guerriere.jpg" alt="Dessin ED"></div>
+            
 
-           <!-- Dessin 5 : Dragon (MASQUÉ à l'accueil, s'affiche dans sa catégorie) -->
-          <div class="gallery-item" data-category="creatures" data-favori="non" onclick="openLightbox('dragon.jpg')"><img src="dragon.jpg" alt="Dessin ED"></div>
+           
         
         </main>
 
