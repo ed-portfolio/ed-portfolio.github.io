@@ -166,7 +166,6 @@ body {
         /* Accueil : portrait plus imposant, sans déformation ni recadrage */
         @media (min-width: 761px) {
             .hero-layout { grid-template-columns: minmax(0, 1.24fr) minmax(0, .76fr); gap: clamp(12px, 2vw, 35px); }
-            .hero-art img { width: 118%; max-width: none; height: auto; max-height: 92vh; object-fit: contain; }
             .hero-art { top: -55px; }
             .hero-copy { top: 20px; }
         }
@@ -245,18 +244,20 @@ body {
             line-height: 1.18;
             letter-spacing: .01em;
         }
+        /* Réglage unique de la taille de l'illustration sur ordinateur.
+           La hauteur est prioritaire : une largeur fixe pouvait rapetisser le dessin.
+           Le PNG reste entier, sans recadrage du halo. */
         @media (min-width: 761px) {
-            /* Agrandir sans rogner le halo : la hauteur reste plafonnée à la fenêtre. */
+            .hero-art { position: relative; top: 18px; overflow: visible; }
             .hero-art img {
-                /* Taille réelle augmentée : empêcher le flex de réduire l’image */
+                display: block;
                 flex: 0 0 auto;
-                width: min(60vw, 900px);
+                width: auto;
                 max-width: none;
-                height: auto;
-                max-height: calc(100vh - 115px);
+                height: min(105vh, 1020px);
+                max-height: none;
                 object-fit: contain;
             }
-            .hero-art { top: -18px; overflow: visible; }
         }
         @media (max-width: 760px) {
             #portfolio-content > .section-title { font-size: clamp(3rem, 12vw, 4.5rem); }
