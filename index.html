@@ -397,6 +397,24 @@ body {
            Les dessins et leurs espacements restent à leur place. */
         #portfolio-content > .section-title { position: relative; top: -50px; }
         #portfolio-content > .gallery-nav { position: relative; top: -30px; }
+    
+        /* Ajustements ciblés : sections À propos et Contact uniquement */
+        #about > .section-title, #contact > .section-title {
+            font-family: 'ED Old London', serif;
+            font-size: 3rem;
+            margin-bottom: 42px;
+        }
+        #about .about-box strong {
+            font-size: 1.15rem;
+            letter-spacing: 0.5px;
+        }
+        #contact .mail-link {
+            font-size: 1.6rem;
+        }
+        @media (max-width: 600px) {
+            #about > .section-title, #contact > .section-title { font-size: 2.6rem; }
+            #contact .mail-link { font-size: clamp(1rem, 5vw, 1.6rem); overflow-wrap: anywhere; }
+        }
     </style>
 </head>
     <body>
@@ -492,11 +510,11 @@ body {
             <!-- 👇 MODIFIER SON NOM COMPLET ET SON ÉCOLE ICI -->
             
 
-<strong style="display: block; margin-bottom: 30px;">
+<strong style="display: block; margin-bottom: 23px;">
     Emily Devaud — Illustratrice & Concept Artist
 </strong>
 
-<p style="margin-bottom: 25px;">
+<p style="margin-bottom: 17px;">
     Diplômée de l'<a href="https://institutartline.com/" target="_blank" style="color: #b8c9e0; font-weight: 500; text-decoration: underline;">Institut Artline</a>, je suis illustratrice et concept artist,<br>
     passionnée par la création d'univers fantastiques.
 </p>
@@ -505,8 +523,8 @@ body {
     À travers mes illustrations, j'explore des mondes où se rencontrent mystère, poésie<br>
     et étrangeté, donnant forme à des personnages et des lieux chargés d'histoires.
 </p>
-
-
+        </div>
+    </section>
 
     <!-- ========================================================
        SECTION CONTACT : ADRESSE E-MAIL
