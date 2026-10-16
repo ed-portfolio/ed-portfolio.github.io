@@ -78,7 +78,7 @@ body {
         .gallery { column-count: 3; column-gap: 30px; width: 100%; }
         @media (max-width: 900px) { .gallery { column-count: 2; } }
         @media (max-width: 600px) { .gallery { column-count: 1; } }
-        .gallery-item { break-inside: avoid; margin-bottom: 30px; position: relative; overflow: hidden; border-radius: 4px; background-color: transparent; border: 1px solid #141418; cursor: pointer; transition: all 0.4s ease; display: block; }
+        .gallery-item { break-inside: avoid; margin-bottom: 30px; position: relative; overflow: hidden; border-radius: 4px; background-color: #101013; border: 1px solid #141418; cursor: pointer; transition: all 0.4s ease; display: block; }
         .gallery-item img { width: 100%; height: auto; display: block; transition: transform 0.6s ease; }
         .gallery-item:hover { border-color: #555; box-shadow: 0 15px 30px rgba(0,0,0,0.5); }
         .gallery-item:hover img { transform: scale(1.02); }
@@ -272,6 +272,63 @@ body {
         @media (max-width: 760px) {
             #portfolio-content > .section-title { font-size: clamp(3rem, 12vw, 4.5rem); }
         }
+
+        /* Galerie Le Monde du Voile : disposition asymétrique uniquement dans son onglet */
+        .gallery.voile-layout {
+            column-count: auto;
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            grid-template-rows: repeat(7, 170px);
+            gap: 16px;
+        }
+        .gallery.voile-layout .gallery-item {
+            margin: 0;
+            min-width: 0;
+            min-height: 0;
+            display: flex !important;
+            flex-direction: column;
+            background: rgba(10, 10, 15, .32);
+        }
+        .gallery.voile-layout .gallery-item img {
+            width: 100%;
+            height: 0;
+            min-height: 0;
+            flex: 1 1 auto;
+            object-fit: contain;
+        }
+        .gallery.voile-layout .gallery-item::after {
+            content: attr(data-label);
+            flex: 0 0 auto;
+            padding: 8px 12px;
+            color: #b8c9e0;
+            font: 400 13px/1.4 'Montserrat', sans-serif;
+            background: rgba(0, 0, 0, .35);
+        }
+        .gallery.voile-layout .voile-personnage { grid-column: 1 / 3; grid-row: 1 / 3; }
+        .gallery.voile-layout .voile-perso2d { grid-column: 3 / 5; grid-row: 1; }
+        .gallery.voile-layout .voile-persorecherche { grid-column: 3 / 5; grid-row: 2; }
+        .gallery.voile-layout .voile-lame { grid-column: 1 / 3; grid-row: 3 / 6; }
+        .gallery.voile-layout .voile-epee1 { grid-column: 3 / 5; grid-row: 3; }
+        .gallery.voile-layout .voile-epee2 { grid-column: 3 / 5; grid-row: 4; }
+        .gallery.voile-layout .voile-turn { grid-column: 3 / 5; grid-row: 5; }
+        .gallery.voile-layout .voile-decor { grid-column: 1 / 3; grid-row: 6 / 8; }
+        .gallery.voile-layout .voile-mock2 { grid-column: 3; grid-row: 6; }
+        .gallery.voile-layout .voile-mock3 { grid-column: 4; grid-row: 6; }
+        .gallery.voile-layout .voile-mock1 { grid-column: 3; grid-row: 7; }
+        .gallery.voile-layout .voile-decorrecherche { grid-column: 4; grid-row: 7; }
+        @media (max-width: 760px) {
+            .gallery.voile-layout { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-rows: none; grid-auto-rows: 180px; gap: 12px; }
+            .gallery.voile-layout .gallery-item { grid-column: auto; grid-row: auto; }
+            .gallery.voile-layout .voile-personnage,
+            .gallery.voile-layout .voile-lame,
+            .gallery.voile-layout .voile-decor { grid-column: 1 / -1; grid-row: span 2; }
+            .gallery.voile-layout .voile-perso2d,
+            .gallery.voile-layout .voile-persorecherche,
+            .gallery.voile-layout .voile-epee1,
+            .gallery.voile-layout .voile-epee2,
+            .gallery.voile-layout .voile-turn { grid-column: 1 / -1; }
+        }
+
     </style>
 </head>
     <body>
@@ -339,31 +396,19 @@ body {
 
         <!-- 👇 LISTE DES DESSINS : POUR MODIFIER LES FICHIERS ET LES CATÉGORIES -->
                 <main class="gallery">
-            <!-- LE MONDE DU VOILE : 12 IMAGES -->
-
-<div class="gallery-item" data-category="contes" data-favori="non" onclick="openLightbox('Le Monde du Voile - La Lame du Serment.jpg')"><img src="Le Monde du Voile - La Lame du Serment.jpg" alt="La Lame du Serment"></div>
-
-<div class="gallery-item" data-category="contes" data-favori="non" onclick="openLightbox('Le Monde du Voile - Personnage.png')"><img src="Le Monde du Voile - Personnage.png" alt="Personnage"></div>
-
-<div class="gallery-item" data-category="contes" data-favori="non" onclick="openLightbox('Le Monde du Voile -Décor.jpg')"><img src="Le Monde du Voile -Décor.jpg" alt="Décor"></div>
-
-<div class="gallery-item" data-category="contes" data-favori="non" onclick="openLightbox('Le Monde du Voile - Décor recherche.jpg')"><img src="Le Monde du Voile - Décor recherche.jpg" alt="Recherche de décor"></div>
-
-<div class="gallery-item" data-category="contes" data-favori="non" onclick="openLightbox('Le Monde du Voile - Perso2d.jpg')"><img src="Le Monde du Voile - Perso2d.jpg" alt="Personnage 2D"></div>
-
-<div class="gallery-item" data-category="contes" data-favori="non" onclick="openLightbox('Le Monde du Voile - Perso recherche.jpg')"><img src="Le Monde du Voile - Perso recherche.jpg" alt="Recherche de personnage"></div>
-
-<div class="gallery-item" data-category="contes" data-favori="non" onclick="openLightbox('Le Monde du Voile - Recherche épée 01.jpg')"><img src="Le Monde du Voile - Recherche épée 01.jpg" alt="Recherche épée 01"></div>
-
-<div class="gallery-item" data-category="contes" data-favori="non" onclick="openLightbox('Le Monde du Voile - Recherche épée 02.jpg')"><img src="Le Monde du Voile - Recherche épée 02.jpg" alt="Recherche épée 02"></div>
-
-<div class="gallery-item" data-category="contes" data-favori="non" onclick="openLightbox('Le Monde du Voile - Turn épée.jpg')"><img src="Le Monde du Voile - Turn épée.jpg" alt="Turn épée"></div>
-
-<div class="gallery-item" data-category="contes" data-favori="non" onclick="openLightbox('Le Monde du Voile -Mockup 01.png')"><img src="Le Monde du Voile -Mockup 01.png" alt="Mockup 01"></div>
-
-<div class="gallery-item" data-category="contes" data-favori="non" onclick="openLightbox('Le Monde du Voile - Mockup 02.jpg')"><img src="Le Monde du Voile - Mockup 02.jpg" alt="Mockup 02"></div>
-
-<div class="gallery-item" data-category="contes" data-favori="non" onclick="openLightbox('Le Monde du Voile - Mockup 03.png')"><img src="Le Monde du Voile - Mockup 03.png" alt="Mockup 03"></div>
+            <!-- Le Monde du Voile : galerie mise en page sur mesure -->
+            <div class="gallery-item voile-personnage" data-category="contes" data-favori="non" data-label="Personnage" onclick="openLightbox('Le Monde du Voile - Personnage.png')"><img src="Le Monde du Voile - Personnage.png" alt="Le Monde du Voile - Personnage"></div>
+            <div class="gallery-item voile-perso2d" data-category="contes" data-favori="non" data-label="Perso 2D" onclick="openLightbox('Le Monde du Voile - Perso2d.jpg')"><img src="Le Monde du Voile - Perso2d.jpg" alt="Le Monde du Voile - Perso 2D"></div>
+            <div class="gallery-item voile-persorecherche" data-category="contes" data-favori="non" data-label="Perso recherche" onclick="openLightbox('Le Monde du Voile - Perso recherche.jpg')"><img src="Le Monde du Voile - Perso recherche.jpg" alt="Le Monde du Voile - Perso recherche"></div>
+            <div class="gallery-item voile-lame" data-category="contes" data-favori="non" data-label="La Lame du Serment" onclick="openLightbox('Le Monde du Voile - La Lame du Serment.jpg')"><img src="Le Monde du Voile - La Lame du Serment.jpg" alt="Le Monde du Voile - La Lame du Serment"></div>
+            <div class="gallery-item voile-epee1" data-category="contes" data-favori="non" data-label="Recherche épée 01" onclick="openLightbox('Le Monde du Voile - Recherche épée 01.jpg')"><img src="Le Monde du Voile - Recherche épée 01.jpg" alt="Le Monde du Voile - Recherche épée 01"></div>
+            <div class="gallery-item voile-epee2" data-category="contes" data-favori="non" data-label="Recherche épée 02" onclick="openLightbox('Le Monde du Voile - Recherche épée 02.jpg')"><img src="Le Monde du Voile - Recherche épée 02.jpg" alt="Le Monde du Voile - Recherche épée 02"></div>
+            <div class="gallery-item voile-turn" data-category="contes" data-favori="non" data-label="Turn épée" onclick="openLightbox('Le Monde du Voile - Turn épée.jpg')"><img src="Le Monde du Voile - Turn épée.jpg" alt="Le Monde du Voile - Turn épée"></div>
+            <div class="gallery-item voile-decor" data-category="contes" data-favori="non" data-label="Décor" onclick="openLightbox('Le Monde du Voile -Décor.jpg')"><img src="Le Monde du Voile -Décor.jpg" alt="Le Monde du Voile - Décor"></div>
+            <div class="gallery-item voile-mock2" data-category="contes" data-favori="non" data-label="Mockup 02" onclick="openLightbox('Le Monde du Voile - Mockup 02.jpg')"><img src="Le Monde du Voile - Mockup 02.jpg" alt="Le Monde du Voile - Mockup 02"></div>
+            <div class="gallery-item voile-mock3" data-category="contes" data-favori="non" data-label="Mockup 03" onclick="openLightbox('Le Monde du Voile - Mockup 03.png')"><img src="Le Monde du Voile - Mockup 03.png" alt="Le Monde du Voile - Mockup 03"></div>
+            <div class="gallery-item voile-mock1" data-category="contes" data-favori="non" data-label="Mockup 01" onclick="openLightbox('Le Monde du Voile -Mockup 01.png')"><img src="Le Monde du Voile -Mockup 01.png" alt="Le Monde du Voile - Mockup 01"></div>
+            <div class="gallery-item voile-decorrecherche" data-category="contes" data-favori="non" data-label="Décor recherche" onclick="openLightbox('Le Monde du Voile - Décor recherche.jpg')"><img src="Le Monde du Voile - Décor recherche.jpg" alt="Le Monde du Voile - Décor recherche"></div>
 
             <!-- Dessin 4 : Guerrière (VISIBLE à l'accueil, s'affiche dans sa catégorie) -->
             <div class="gallery-item" data-category="creatures" data-favori="oui" onclick="openLightbox('guerriere.jpg')"><img src="guerriere.jpg" alt="Dessin ED"></div>
@@ -478,7 +523,8 @@ body {
             }
         });
 
-        function filterGallery(category, button) { 
+        function filterGallery(category, button) {
+            document.querySelector('.gallery').classList.toggle('voile-layout', category === 'contes'); 
             var buttons = document.querySelectorAll('.filter-btn'); 
             for (var i = 0; i < buttons.length; i++) { buttons[i].classList.remove('active'); } 
             if(button) button.classList.add('active'); 
