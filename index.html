@@ -631,7 +631,7 @@ body {
     <header class="top-nav">
         <div class="nav-logo" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">ED</div>
         <div class="nav-links">
-            <a href="#portfolio-content" onclick="showEnLumiere()">Portfolio</a>
+            <a href="#portfolio-content" onclick="showEnLumiere(); scrollToGallery(); return false;">Portfolio</a>
             <a href="#about">À propos</a>
             <a href="#contact">Contact</a>
             <!-- 👇 MODIFIER LE LIEN DE SON COMPTE INSTAGRAM ICI -->
@@ -820,7 +820,14 @@ body {
 
         function scrollToGallery() { 
             var el = document.getElementById('portfolio-content'); 
-            if(el) el.scrollIntoView({ behavior: 'smooth' }); 
+            if (el) {
+                // Le titre Portfolio arrive 20 px sous la barre de navigation fixe.
+                var nav = document.querySelector('.top-nav');
+                var navHeight = nav ? nav.getBoundingClientRect().height : 0;
+                var target = el.querySelector('.section-title') || el;
+                var top = window.scrollY + target.getBoundingClientRect().top - navHeight - 20;
+                window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
+            } 
         }
 
         function openLightbox(imageSrc) { 
