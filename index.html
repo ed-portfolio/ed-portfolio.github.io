@@ -652,8 +652,8 @@ body {
                 <div class="stats-block">
             <hr class="stats-hr">
             <div class="stats-container">
-                <div class="stat-item"><div class="stat-number">4</div><div class="stat-label">Œuvres</div></div>
-                <div class="stat-item"><div class="stat-number">2</div><div class="stat-label">Univers</div></div>
+                <div class="stat-item"><div class="stat-number" id="ed-count-works">4</div><div class="stat-label">Œuvres</div></div>
+                <div class="stat-item"><div class="stat-number" id="ed-count-universes">2</div><div class="stat-label">Univers</div></div>
                 <div class="stat-item"><div class="stat-number">2026</div><div class="stat-label">En cours</div></div>
             </div>
             <hr class="stats-hr">
@@ -897,6 +897,40 @@ body {
                 } 
             } 
         }
+
+
+        // COMPTEURS AUTOMATIQUES : les catégories de projets et les dessins uniques.
+        // Les doublons portant deux noms différents sont associés ici à une même œuvre.
+        // Ajouter d'autres équivalences si de nouveaux doublons sont identifiés.
+        function updatePortfolioCounters() {
+            const gallery = document.querySelector('.gallery');
+            if (!gallery) return;
+            const items = [...gallery.querySelectorAll('.gallery-item[data-category]')];
+            const projectCategories = new Set(items.map(item => item.dataset.category).filter(cat => cat !== 'selection' && cat !== 'tout'));
+            const universeCount = document.getElementById('ed-count-universes');
+            if (universeCount) universeCount.textContent = projectCategories.size;
+
+            // Associations confirmées par les noms et les planches de présentation.
+            const sameArtwork = {
+                'En Lumière-01-Le Monde du Voile.jpg': 'Le Monde du Voile -Décor.jpg',
+                'En Lumière-02-La Prophétesse.png': '03-La Prophétesse.png',
+                'En Lumière-03-Le Confesseur.png': '06-Le Confesseur.png',
+                'En Lumière-04-La Gardienne.png': '05-La Gardienne.png',
+                "En Lumière-08-L'Encre et le Sang- Illustration.jpg": "L'Encre et le Sang 01- Illustration.jpg",
+                'En Lumière-09-Sleepy Hollow.jpg': 'Sleepy Hollow - 01.jpg',
+                'En Lumière-10-Sleepy Hollow.jpg': 'Sleepy Hollow - 08.jpg'
+            };
+            const works = new Set();
+            for (const item of items) {
+                const img = item.querySelector('img[src]');
+                if (!img) continue;
+                const filename = img.getAttribute('src');
+                works.add(item.dataset.workId || sameArtwork[filename] || filename);
+            }
+            const workCount = document.getElementById('ed-count-works');
+            if (workCount) workCount.textContent = works.size;
+        }
+        document.addEventListener('DOMContentLoaded', updatePortfolioCounters);
 
         // Toujours ouvrir sur l'accueil, y compris après un rechargement du navigateur.
         if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
