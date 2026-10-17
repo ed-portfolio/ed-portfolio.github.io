@@ -152,6 +152,12 @@ body {
         .scroll-cue { background: transparent; border: 0; color: #d8a26b; cursor: pointer; padding: 2px 24px 8px; margin-top: 4px; font-family: 'Montserrat', sans-serif; font-size: 2.1rem; line-height: 1; }
         .scroll-cue span { display: inline-block; animation: edDown 2.4s ease-in-out infinite; }
         .scroll-cue:hover { color: #ecd7be; }
+        /* Retour discret vers les onglets, à la fin de chaque galerie. */
+        .gallery-back-cue { display: block; margin: 45px auto 5px; background: transparent; border: 0; color: #b8c9e0; cursor: pointer; padding: 8px 24px; font-family: 'Montserrat', sans-serif; font-size: 2.1rem; line-height: 1; }
+        .gallery-back-cue:hover { color: #b8c9e0; }
+        .gallery-back-cue span { display: inline-block; transition: transform .25s ease; }
+        .gallery-back-cue:hover span { transform: translateY(-5px); }
+
         @keyframes edDown { 0%,100% { transform: translateY(0); opacity: .65; } 50% { transform: translateY(7px); opacity: 1; } }
         @media (prefers-reduced-motion: reduce) {
             .hero-art, .hero-copy, .scroll-cue span { animation: none; }
@@ -625,7 +631,7 @@ body {
     <header class="top-nav">
         <div class="nav-logo" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">ED</div>
         <div class="nav-links">
-            <a href="#portfolio-content">Portfolio</a>
+            <a href="#portfolio-content" onclick="showEnLumiere(); scrollToGallery(); return false;">Portfolio</a>
             <a href="#about">À propos</a>
             <a href="#contact">Contact</a>
             <!-- 👇 MODIFIER LE LIEN DE SON COMPTE INSTAGRAM ICI -->
@@ -749,6 +755,7 @@ body {
            
         
         </main>
+        <button class="gallery-back-cue" type="button" onclick="scrollToGallery()" aria-label="Remonter aux catégories du portfolio"><span aria-hidden="true">⌃</span></button>
 
     </section>
 
@@ -806,9 +813,21 @@ body {
         var currentVisibleImages = [];
         var currentImgIndex = 0;
 
+        function showEnLumiere() {
+            var firstTab = document.querySelector('.filter-btn');
+            if (firstTab) filterGallery('selection', firstTab);
+        }
+
         function scrollToGallery() { 
             var el = document.getElementById('portfolio-content'); 
-            if(el) el.scrollIntoView({ behavior: 'smooth' }); 
+            if (el) {
+                // Le titre Portfolio arrive 20 px sous la barre de navigation fixe.
+                var nav = document.querySelector('.top-nav');
+                var navHeight = nav ? nav.getBoundingClientRect().height : 0;
+                var target = el.querySelector('.section-title') || el;
+                var top = window.scrollY + target.getBoundingClientRect().top - navHeight - 20;
+                window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
+            } 
         }
 
         function openLightbox(imageSrc) { 
