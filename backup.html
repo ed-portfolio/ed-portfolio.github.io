@@ -484,6 +484,86 @@ body {
             #about > .section-title, #contact > .section-title { font-size: 2.6rem; }
             #contact .mail-link { font-size: clamp(1rem, 5vw, 1.6rem); overflow-wrap: anywhere; }
         }
+    
+        /* L'ENCRE ET LE SANG : 1 / 2 / 1 / 2 / 1, espacement vertical 65 px. */
+        .gallery.encre-layout {
+            column-count: auto;
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            column-gap: 20px;
+            row-gap: 65px;
+            align-items: center;
+        }
+        .gallery.encre-layout .encre-item {
+            display: block;
+            margin: 0;
+            min-width: 0;
+            overflow: hidden;
+            border: 0;
+            background: transparent;
+            box-shadow: none;
+        }
+        .gallery.encre-layout .encre-item img {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: contain;
+        }
+        .gallery.encre-layout .encre-item::after { content: none !important; display: none !important; }
+        .gallery.encre-layout .encre-01 { grid-column: 1 / -1; grid-row: 1; }
+        .gallery.encre-layout .encre-02 { grid-column: 1; grid-row: 2; }
+        .gallery.encre-layout .encre-03 { grid-column: 2; grid-row: 2; }
+        .gallery.encre-layout .encre-04 { grid-column: 1 / -1; grid-row: 3; }
+        .gallery.encre-layout .encre-05 { grid-column: 1; grid-row: 4; }
+        .gallery.encre-layout .encre-06 { grid-column: 2; grid-row: 4; }
+        .gallery.encre-layout .encre-07 { grid-column: 1 / -1; grid-row: 5; }
+        @media (max-width: 600px) {
+            .gallery.encre-layout { column-gap: 12px; row-gap: 65px; }
+        }
+
+
+        /* SLEEPY HOLLOW : 1 / 1 / 2 / 2 / 1 / 1 ; 65 px entre les rangées. */
+        .gallery.sleepy-layout {
+            column-count: auto;
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            column-gap: 20px;
+            row-gap: 65px;
+            align-items: center;
+        }
+        .gallery.sleepy-layout .sleepy-item {
+            display: block;
+            margin: 0;
+            min-width: 0;
+            overflow: hidden;
+            border: 0;
+            background: transparent;
+            box-shadow: none;
+        }
+        .gallery.sleepy-layout .sleepy-item img {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: contain;
+        }
+        .gallery.sleepy-layout .sleepy-item::after { content: none !important; display: none !important; }
+        .gallery.sleepy-layout .sleepy-01 { grid-column: 1 / -1; grid-row: 1; }
+        .gallery.sleepy-layout .sleepy-02 { grid-column: 1 / -1; grid-row: 2; }
+        .gallery.sleepy-layout .sleepy-03 { grid-column: 1; grid-row: 3; }
+        .gallery.sleepy-layout .sleepy-04 { grid-column: 2; grid-row: 3; }
+        .gallery.sleepy-layout .sleepy-05 { grid-column: 1; grid-row: 4; }
+        .gallery.sleepy-layout .sleepy-06 { grid-column: 2; grid-row: 4; }
+        .gallery.sleepy-layout .sleepy-07 { grid-column: 1 / -1; grid-row: 5; }
+        .gallery.sleepy-layout .sleepy-08 { grid-column: 1 / -1; grid-row: 6; }
+        .gallery.sleepy-layout .sleepy-09 { grid-column: 1 / -1; grid-row: 7; }
+        .gallery.sleepy-layout .sleepy-10 { grid-column: 1 / -1; grid-row: 8; }
+        .gallery.sleepy-layout .sleepy-11 { grid-column: 1 / -1; grid-row: 9; }
+        .gallery.sleepy-layout .sleepy-12 { grid-column: 1; grid-row: 10; }
+        .gallery.sleepy-layout .sleepy-13 { grid-column: 2; grid-row: 10; }
+        @media (max-width: 600px) {
+            .gallery.sleepy-layout { column-gap: 12px; row-gap: 65px; }
+        }
+
     </style>
 </head>
     <body>
@@ -551,6 +631,30 @@ body {
 
         <!-- 👇 LISTE DES DESSINS : POUR MODIFIER LES FICHIERS ET LES CATÉGORIES -->
                 <main class="gallery">
+            <!-- Sleepy Hollow : huit images, six rangées, espacement 65 px. -->
+            <div class="gallery-item sleepy-item sleepy-01" data-category="croquis" data-favori="non" data-label="Sleepy Hollow 01" onclick="openLightbox(&quot;Sleepy Hollow - 01.jpg&quot;)"><img src="Sleepy Hollow - 01.jpg" alt="Sleepy Hollow 01" loading="lazy"></div>
+            <div class="gallery-item sleepy-item sleepy-02" data-category="croquis" data-favori="non" data-label="Sleepy Hollow 02" onclick="openLightbox(&quot;Sleepy Hollow -02 Line up.png&quot;)"><img src="Sleepy Hollow -02 Line up.png" alt="Sleepy Hollow 02" loading="lazy"></div>
+            <div class="gallery-item sleepy-item sleepy-03" data-category="croquis" data-favori="non" data-label="Sleepy Hollow 03" onclick="openLightbox(&quot;Sleepy Hollow -03-Expressions.jpg&quot;)"><img src="Sleepy Hollow -03-Expressions.jpg" alt="Sleepy Hollow 03" loading="lazy"></div>
+            <div class="gallery-item sleepy-item sleepy-04" data-category="croquis" data-favori="non" data-label="Sleepy Hollow 04" onclick="openLightbox(&quot;Sleepy Hollow -04- Posing.jpg&quot;)"><img src="Sleepy Hollow -04- Posing.jpg" alt="Sleepy Hollow 04" loading="lazy"></div>
+            <div class="gallery-item sleepy-item sleepy-05" data-category="croquis" data-favori="non" data-label="Sleepy Hollow 05" onclick="openLightbox(&quot;Sleepy Hollow -05- Rough.jpg&quot;)"><img src="Sleepy Hollow -05- Rough.jpg" alt="Sleepy Hollow 05" loading="lazy"></div>
+            <div class="gallery-item sleepy-item sleepy-06" data-category="croquis" data-favori="non" data-label="Sleepy Hollow 06" onclick="openLightbox(&quot;Sleepy Hollow -06- Turn around.jpg&quot;)"><img src="Sleepy Hollow -06- Turn around.jpg" alt="Sleepy Hollow 06" loading="lazy"></div>
+            <div class="gallery-item sleepy-item sleepy-07" data-category="croquis" data-favori="non" data-label="Sleepy Hollow 07" onclick="openLightbox(&quot;Sleepy Hollow -07- Props.png&quot;)"><img src="Sleepy Hollow -07- Props.png" alt="Sleepy Hollow 07" loading="lazy"></div>
+            <div class="gallery-item sleepy-item sleepy-08" data-category="croquis" data-favori="non" data-label="Sleepy Hollow 08" onclick="openLightbox(&quot;Sleepy Hollow - 08.jpg&quot;)"><img src="Sleepy Hollow - 08.jpg" alt="Sleepy Hollow 08" loading="lazy"></div>
+            <!-- Sleepy Hollow : suite 09 à 13 ; 65 px entre les rangées. -->
+            <div class="gallery-item sleepy-item sleepy-09" data-category="croquis" data-favori="non" data-label="Sleepy Hollow 09" onclick="openLightbox(&quot;Sleepy Hollow - 09.jpg&quot;)"><img src="Sleepy Hollow - 09.jpg" alt="Sleepy Hollow 09" loading="lazy"></div>
+            <div class="gallery-item sleepy-item sleepy-10" data-category="croquis" data-favori="non" data-label="Sleepy Hollow 10" onclick="openLightbox(&quot;Sleepy Hollow - 10.jpg&quot;)"><img src="Sleepy Hollow - 10.jpg" alt="Sleepy Hollow 10" loading="lazy"></div>
+            <div class="gallery-item sleepy-item sleepy-11" data-category="croquis" data-favori="non" data-label="Sleepy Hollow 11" onclick="openLightbox(&quot;Sleepy Hollow - 11.jpg&quot;)"><img src="Sleepy Hollow - 11.jpg" alt="Sleepy Hollow 11" loading="lazy"></div>
+            <div class="gallery-item sleepy-item sleepy-12" data-category="croquis" data-favori="non" data-label="Sleepy Hollow 12" onclick="openLightbox(&quot;Sleepy Hollow - Mockup-12.png&quot;)"><img src="Sleepy Hollow - Mockup-12.png" alt="Sleepy Hollow 12" loading="lazy"></div>
+            <div class="gallery-item sleepy-item sleepy-13" data-category="croquis" data-favori="non" data-label="Sleepy Hollow 13" onclick="openLightbox(&quot;Sleepy Hollow - Mockup-13.png&quot;)"><img src="Sleepy Hollow - Mockup-13.png" alt="Sleepy Hollow 13" loading="lazy"></div>
+            <!-- L'Encre et le Sang : galerie 1 / 2 / 1 / 2 / 1. -->
+            <div class="gallery-item encre-item encre-01" data-category="creatures" data-favori="non" data-label="Illustration" onclick="openLightbox(&quot;L&#x27;Encre et le Sang 01- Illustration.jpg&quot;)"><img src="L&#x27;Encre et le Sang 01- Illustration.jpg" alt="Illustration" loading="lazy"></div>
+            <div class="gallery-item encre-item encre-02" data-category="creatures" data-favori="non" data-label="Dragon présentation" onclick="openLightbox(&quot;L&#x27;Encre et le Sang 02- Dragon présentation.jpg&quot;)"><img src="L&#x27;Encre et le Sang 02- Dragon présentation.jpg" alt="Dragon présentation" loading="lazy"></div>
+            <div class="gallery-item encre-item encre-03" data-category="creatures" data-favori="non" data-label="Dragon selle" onclick="openLightbox(&quot;L&#x27;Encre et le Sang 03- Dragon selle.jpg&quot;)"><img src="L&#x27;Encre et le Sang 03- Dragon selle.jpg" alt="Dragon selle" loading="lazy"></div>
+            <div class="gallery-item encre-item encre-04" data-category="creatures" data-favori="non" data-label="Objets" onclick="openLightbox(&quot;L&#x27;Encre et le Sang 04-Objets.png&quot;)"><img src="L&#x27;Encre et le Sang 04-Objets.png" alt="Objets" loading="lazy"></div>
+            <div class="gallery-item encre-item encre-05" data-category="creatures" data-favori="non" data-label="Décor 01" onclick="openLightbox(&quot;L&#x27;Encre et le Sang 05- Décor.jpg&quot;)"><img src="L&#x27;Encre et le Sang 05- Décor.jpg" alt="Décor 01" loading="lazy"></div>
+            <div class="gallery-item encre-item encre-06" data-category="creatures" data-favori="non" data-label="Décor 02" onclick="openLightbox(&quot;L&#x27;Encre et le Sang 06- Décor.jpg&quot;)"><img src="L&#x27;Encre et le Sang 06- Décor.jpg" alt="Décor 02" loading="lazy"></div>
+            <div class="gallery-item encre-item encre-07" data-category="creatures" data-favori="non" data-label="Mockup" onclick="openLightbox(&quot;L&#x27;Encre et le Sang 07- Mockup.png&quot;)"><img src="L&#x27;Encre et le Sang 07- Mockup.png" alt="Mockup" loading="lazy"></div>
+
             <!-- La Nuit des Âmes : quatre rangées de cartes, 65 px entre les rangées. -->
             <div class="gallery-item ames-carte ames-01" data-category="portraits" data-favori="non" data-label="Chandelle" onclick="openLightbox('01-Chandelle.png')"><img src="01-Chandelle.png" alt="Chandelle" loading="lazy"></div>
             <div class="gallery-item ames-carte ames-02" data-category="portraits" data-favori="non" data-label="Déchus" onclick="openLightbox('02-Déchus.png')"><img src="02-Déchus.png" alt="Déchus" loading="lazy"></div>
@@ -703,7 +807,9 @@ body {
 
         function filterGallery(category, button) {
             document.querySelector('.gallery').classList.toggle('voile-layout', category === 'contes');
-            document.querySelector('.gallery').classList.toggle('ames-layout', category === 'portraits'); 
+            document.querySelector('.gallery').classList.toggle('ames-layout', category === 'portraits');
+            document.querySelector('.gallery').classList.toggle('encre-layout', category === 'creatures');
+            document.querySelector('.gallery').classList.toggle('sleepy-layout', category === 'croquis'); 
             var buttons = document.querySelectorAll('.filter-btn'); 
             for (var i = 0; i < buttons.length; i++) { buttons[i].classList.remove('active'); } 
             if(button) button.classList.add('active'); 
