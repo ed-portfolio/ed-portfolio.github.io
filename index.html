@@ -299,6 +299,8 @@ body {
             aspect-ratio: 2 / 3;
             object-fit: contain;
         }
+        /* Aucun nom affiché sous les cartes de La Nuit des Âmes. */
+        .gallery.ames-layout .ames-carte::after { content: none !important; display: none !important; }
         .gallery.ames-layout .ames-carte:hover img { transform: none; }
         .gallery.ames-layout .ames-carte:nth-of-type(n) { break-inside: avoid; }
         .gallery.ames-layout .ames-01 { grid-column: 2 / 4; grid-row: 1; }
@@ -525,15 +527,15 @@ body {
         <!-- 👇 LISTE DES DESSINS : POUR MODIFIER LES FICHIERS ET LES CATÉGORIES -->
                 <main class="gallery">
             <!-- La Nuit des Âmes : quatre rangées de cartes, 65 px entre les rangées. -->
-            <div class="gallery-item ames-carte ames-01" data-category="portraits" data-favori="non" data-label="Chandelle" onclick="openLightbox('La Nuit des Âmes - 01-Chandelle.jpg')"><img src="La Nuit des Âmes - 01-Chandelle.jpg" alt="Chandelle" loading="lazy"></div>
-            <div class="gallery-item ames-carte ames-02" data-category="portraits" data-favori="non" data-label="Déchus" onclick="openLightbox('La Nuit des Âmes - 02-Déchus.jpg')"><img src="La Nuit des Âmes - 02-Déchus.jpg" alt="Déchus" loading="lazy"></div>
-            <div class="gallery-item ames-carte ames-03" data-category="portraits" data-favori="non" data-label="La Prophétesse" onclick="openLightbox('La Nuit des Âmes - 03-La Prophétesse.jpg')"><img src="La Nuit des Âmes - 03-La Prophétesse.jpg" alt="La Prophétesse" loading="lazy"></div>
-            <div class="gallery-item ames-carte ames-04" data-category="portraits" data-favori="non" data-label="Âmes" onclick="openLightbox('La Nuit des Âmes - 04-Âmes.jpg')"><img src="La Nuit des Âmes - 04-Âmes.jpg" alt="Âmes" loading="lazy"></div>
-            <div class="gallery-item ames-carte ames-05" data-category="portraits" data-favori="non" data-label="La Gardienne" onclick="openLightbox('La Nuit des Âmes - 05-La Gardienne.jpg')"><img src="La Nuit des Âmes - 05-La Gardienne.jpg" alt="La Gardienne" loading="lazy"></div>
-            <div class="gallery-item ames-carte ames-06" data-category="portraits" data-favori="non" data-label="Le Confesseur" onclick="openLightbox('La Nuit des Âmes - 06-Le Confesseur.jpg')"><img src="La Nuit des Âmes - 06-Le Confesseur.jpg" alt="Le Confesseur" loading="lazy"></div>
-            <div class="gallery-item ames-carte ames-07" data-category="portraits" data-favori="non" data-label="Chapelet" onclick="openLightbox('La Nuit des Âmes - 07-Chapelet.jpg')"><img src="La Nuit des Âmes - 07-Chapelet.jpg" alt="Chapelet" loading="lazy"></div>
-            <div class="gallery-item ames-carte ames-08" data-category="portraits" data-favori="non" data-label="Le Cimetière" onclick="openLightbox('La Nuit des Âmes - 08-Le Cimetière.jpg')"><img src="La Nuit des Âmes - 08-Le Cimetière.jpg" alt="Le Cimetière" loading="lazy"></div>
-            <div class="gallery-item ames-carte ames-09" data-category="portraits" data-favori="non" data-label="Le Jugement" onclick="openLightbox('La Nuit des Âmes - 09-Le Jugement.jpg')"><img src="La Nuit des Âmes - 09-Le Jugement.jpg" alt="Le Jugement" loading="lazy"></div>
+            <div class="gallery-item ames-carte ames-01" data-category="portraits" data-favori="non" data-label="Chandelle" onclick="openLightbox('01-Chandelle.png')"><img src="01-Chandelle.png" alt="Chandelle" loading="lazy"></div>
+            <div class="gallery-item ames-carte ames-02" data-category="portraits" data-favori="non" data-label="Déchus" onclick="openLightbox('02-Déchus.png')"><img src="02-Déchus.png" alt="Déchus" loading="lazy"></div>
+            <div class="gallery-item ames-carte ames-03" data-category="portraits" data-favori="non" data-label="La Prophétesse" onclick="openLightbox('03-La Prophétesse.png')"><img src="03-La Prophétesse.png" alt="La Prophétesse" loading="lazy"></div>
+            <div class="gallery-item ames-carte ames-04" data-category="portraits" data-favori="non" data-label="Âmes" onclick="openLightbox('04-Âmes.png')"><img src="04-Âmes.png" alt="Âmes" loading="lazy"></div>
+            <div class="gallery-item ames-carte ames-05" data-category="portraits" data-favori="non" data-label="La Gardienne" onclick="openLightbox('05-La Gardienne.png')"><img src="05-La Gardienne.png" alt="La Gardienne" loading="lazy"></div>
+            <div class="gallery-item ames-carte ames-06" data-category="portraits" data-favori="non" data-label="Le Confesseur" onclick="openLightbox('06-Le Confesseur.png')"><img src="06-Le Confesseur.png" alt="Le Confesseur" loading="lazy"></div>
+            <div class="gallery-item ames-carte ames-07" data-category="portraits" data-favori="non" data-label="Chapelet" onclick="openLightbox('07-Chapelet.png')"><img src="07-Chapelet.png" alt="Chapelet" loading="lazy"></div>
+            <div class="gallery-item ames-carte ames-08" data-category="portraits" data-favori="non" data-label="Le Cimetière" onclick="openLightbox('08-Le Cimetière.png')"><img src="08-Le Cimetière.png" alt="Le Cimetière" loading="lazy"></div>
+            <div class="gallery-item ames-carte ames-09" data-category="portraits" data-favori="non" data-label="Le Jugement" onclick="openLightbox('09-Le Jugement.png')"><img src="09-Le Jugement.png" alt="Le Jugement" loading="lazy"></div>
             <!-- Le Monde du Voile : galerie mise en page sur mesure -->
             <div class="gallery-item voile-personnage" data-category="contes" data-favori="non" data-label="Personnage" onclick="openLightbox('Le Monde du Voile - Personnage.png')"><img src="Le Monde du Voile - Personnage.png" alt="Le Monde du Voile - Personnage"></div>
             <div class="gallery-item voile-persorecherche" data-category="contes" data-favori="non" data-label="Perso recherche" onclick="openLightbox('Le Monde du Voile - Perso recherche.jpg')"><img src="Le Monde du Voile - Perso recherche.jpg" alt="Le Monde du Voile - Perso recherche"></div>
