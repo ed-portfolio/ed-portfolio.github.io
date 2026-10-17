@@ -82,6 +82,17 @@ body {
         .gallery-item img { width: 100%; height: auto; display: block; transition: transform 0.6s ease; }
         .gallery-item:hover { border-color: #555; box-shadow: 0 15px 30px rgba(0,0,0,0.5); }
         .gallery-item:hover img { transform: scale(1.02); }
+
+        /* L'Intégrale : images sans cadres, comme les autres onglets. */
+        .gallery.integrale-layout .gallery-item {
+            background: transparent;
+            border: none;
+            border-radius: 0;
+        }
+        .gallery.integrale-layout .gallery-item:hover {
+            border: none;
+            box-shadow: none;
+        }
         
         .about-box { max-width: 700px; margin: 0 auto; text-align: center; line-height: 1.9; color: #aaa; font-weight: 300; font-size: 1.05rem; }
         .about-box strong { color: #ecd7be; font-weight: 500; display: block; margin-bottom: 15px; font-size: 1.3rem; font-family: 'Montserrat', sans-serif; letter-spacing: 1px; }
@@ -863,7 +874,8 @@ body {
             document.querySelector('.gallery').classList.toggle('voile-layout', category === 'contes');
             document.querySelector('.gallery').classList.toggle('ames-layout', category === 'portraits');
             document.querySelector('.gallery').classList.toggle('encre-layout', category === 'creatures');
-            document.querySelector('.gallery').classList.toggle('sleepy-layout', category === 'croquis'); 
+            document.querySelector('.gallery').classList.toggle('sleepy-layout', category === 'croquis');
+            document.querySelector('.gallery').classList.toggle('integrale-layout', category === 'tout'); 
             var buttons = document.querySelectorAll('.filter-btn'); 
             for (var i = 0; i < buttons.length; i++) { buttons[i].classList.remove('active'); } 
             if(button) button.classList.add('active'); 
