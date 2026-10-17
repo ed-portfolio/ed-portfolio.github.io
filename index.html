@@ -564,6 +564,46 @@ body {
             .gallery.sleepy-layout { column-gap: 12px; row-gap: 65px; }
         }
 
+
+        /* EN LUMIÈRE : 1 / 3 / 2 / 1 / 1 / 2 / 1, 65 px entre les lignes. */
+        .gallery.lumiere-layout {
+            column-count: auto;
+            display: grid;
+            grid-template-columns: repeat(6, minmax(0, 1fr));
+            column-gap: 20px;
+            row-gap: 65px;
+            align-items: center;
+        }
+        .gallery.lumiere-layout .lumiere-item {
+            margin: 0;
+            min-width: 0;
+            overflow: hidden;
+            border: 0;
+            background: transparent;
+            box-shadow: none;
+        }
+        .gallery.lumiere-layout .lumiere-item img {
+            display: block;
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+        }
+        .gallery.lumiere-layout .lumiere-item::after { content: none !important; display: none !important; }
+        .gallery.lumiere-layout .lumiere-01 { grid-column: 1 / -1; grid-row: 1; }
+        .gallery.lumiere-layout .lumiere-02 { grid-column: 1 / 3; grid-row: 2; }
+        .gallery.lumiere-layout .lumiere-03 { grid-column: 3 / 5; grid-row: 2; }
+        .gallery.lumiere-layout .lumiere-04 { grid-column: 5 / 7; grid-row: 2; }
+        .gallery.lumiere-layout .lumiere-05 { grid-column: 1 / 4; grid-row: 3; }
+        .gallery.lumiere-layout .lumiere-06 { grid-column: 4 / 7; grid-row: 3; }
+        .gallery.lumiere-layout .lumiere-07 { grid-column: 1 / -1; grid-row: 4; }
+        .gallery.lumiere-layout .lumiere-08 { grid-column: 1 / -1; grid-row: 5; }
+        .gallery.lumiere-layout .lumiere-09 { grid-column: 1 / 4; grid-row: 6; }
+        .gallery.lumiere-layout .lumiere-10 { grid-column: 4 / 7; grid-row: 6; }
+        .gallery.lumiere-layout .lumiere-11 { grid-column: 1 / -1; grid-row: 7; }
+        @media (max-width: 600px) {
+            .gallery.lumiere-layout { column-gap: 12px; row-gap: 65px; }
+        }
+
     </style>
 </head>
     <body>
@@ -631,6 +671,19 @@ body {
 
         <!-- 👇 LISTE DES DESSINS : POUR MODIFIER LES FICHIERS ET LES CATÉGORIES -->
                 <main class="gallery">
+            <!-- En Lumière : onze illustrations, sept rangées. -->
+            <div class="gallery-item lumiere-item lumiere-01" data-category="selection" data-favori="oui" data-label="En Lumière 01" onclick="openLightbox('En Lumière-01-Le Monde du Voile.jpg')"><img src="En Lumière-01-Le Monde du Voile.jpg" alt="En Lumière 01" loading="lazy"></div>
+            <div class="gallery-item lumiere-item lumiere-02" data-category="selection" data-favori="oui" data-label="En Lumière 02" onclick="openLightbox('En Lumière-02-La Prophétesse.png')"><img src="En Lumière-02-La Prophétesse.png" alt="En Lumière 02" loading="lazy"></div>
+            <div class="gallery-item lumiere-item lumiere-03" data-category="selection" data-favori="oui" data-label="En Lumière 03" onclick="openLightbox('En Lumière-03-Le Confesseur.png')"><img src="En Lumière-03-Le Confesseur.png" alt="En Lumière 03" loading="lazy"></div>
+            <div class="gallery-item lumiere-item lumiere-04" data-category="selection" data-favori="oui" data-label="En Lumière 04" onclick="openLightbox('En Lumière-04-La Gardienne.png')"><img src="En Lumière-04-La Gardienne.png" alt="En Lumière 04" loading="lazy"></div>
+            <div class="gallery-item lumiere-item lumiere-05" data-category="selection" data-favori="oui" data-label="En Lumière 05" onclick="openLightbox('En Lumière-05-Avatar.jpg')"><img src="En Lumière-05-Avatar.jpg" alt="En Lumière 05" loading="lazy"></div>
+            <div class="gallery-item lumiere-item lumiere-06" data-category="selection" data-favori="oui" data-label="En Lumière 06" onclick="openLightbox('En Lumière-06-Conte personnage.png')"><img src="En Lumière-06-Conte personnage.png" alt="En Lumière 06" loading="lazy"></div>
+            <div class="gallery-item lumiere-item lumiere-07" data-category="selection" data-favori="oui" data-label="En Lumière 07" onclick="openLightbox('En Lumière-07-Petit Prince.jpg')"><img src="En Lumière-07-Petit Prince.jpg" alt="En Lumière 07" loading="lazy"></div>
+            <div class="gallery-item lumiere-item lumiere-08" data-category="selection" data-favori="oui" data-label="En Lumière 08" onclick="openLightbox(&quot;En Lumière-08-L'Encre et le Sang- Illustration.jpg&quot;)"><img src="En Lumière-08-L&#39;Encre et le Sang- Illustration.jpg" alt="En Lumière 08" loading="lazy"></div>
+            <div class="gallery-item lumiere-item lumiere-09" data-category="selection" data-favori="oui" data-label="En Lumière 09" onclick="openLightbox('En Lumière-09-Sleepy Hollow.jpg')"><img src="En Lumière-09-Sleepy Hollow.jpg" alt="En Lumière 09" loading="lazy"></div>
+            <div class="gallery-item lumiere-item lumiere-10" data-category="selection" data-favori="oui" data-label="En Lumière 10" onclick="openLightbox('En Lumière-10-Sleepy Hollow.jpg')"><img src="En Lumière-10-Sleepy Hollow.jpg" alt="En Lumière 10" loading="lazy"></div>
+            <div class="gallery-item lumiere-item lumiere-11" data-category="selection" data-favori="oui" data-label="En Lumière 11" onclick="openLightbox('En Lumière-11-Splash Art-Dragon.jpg')"><img src="En Lumière-11-Splash Art-Dragon.jpg" alt="En Lumière 11" loading="lazy"></div>
+
             <!-- Sleepy Hollow : huit images, six rangées, espacement 65 px. -->
             <div class="gallery-item sleepy-item sleepy-01" data-category="croquis" data-favori="non" data-label="Sleepy Hollow 01" onclick="openLightbox(&quot;Sleepy Hollow - 01.jpg&quot;)"><img src="Sleepy Hollow - 01.jpg" alt="Sleepy Hollow 01" loading="lazy"></div>
             <div class="gallery-item sleepy-item sleepy-02" data-category="croquis" data-favori="non" data-label="Sleepy Hollow 02" onclick="openLightbox(&quot;Sleepy Hollow -02 Line up.png&quot;)"><img src="Sleepy Hollow -02 Line up.png" alt="Sleepy Hollow 02" loading="lazy"></div>
@@ -806,6 +859,7 @@ body {
         });
 
         function filterGallery(category, button) {
+            document.querySelector('.gallery').classList.toggle('lumiere-layout', category === 'selection');
             document.querySelector('.gallery').classList.toggle('voile-layout', category === 'contes');
             document.querySelector('.gallery').classList.toggle('ames-layout', category === 'portraits');
             document.querySelector('.gallery').classList.toggle('encre-layout', category === 'creatures');
