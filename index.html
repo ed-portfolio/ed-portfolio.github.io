@@ -484,6 +484,43 @@ body {
             #about > .section-title, #contact > .section-title { font-size: 2.6rem; }
             #contact .mail-link { font-size: clamp(1rem, 5vw, 1.6rem); overflow-wrap: anywhere; }
         }
+    
+        /* L'ENCRE ET LE SANG : 1 / 2 / 1 / 2 / 1, espacement vertical 65 px. */
+        .gallery.encre-layout {
+            column-count: auto;
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            column-gap: 20px;
+            row-gap: 65px;
+            align-items: center;
+        }
+        .gallery.encre-layout .encre-item {
+            display: block;
+            margin: 0;
+            min-width: 0;
+            overflow: hidden;
+            border: 0;
+            background: transparent;
+            box-shadow: none;
+        }
+        .gallery.encre-layout .encre-item img {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: contain;
+        }
+        .gallery.encre-layout .encre-item::after { content: none !important; display: none !important; }
+        .gallery.encre-layout .encre-01 { grid-column: 1 / -1; grid-row: 1; }
+        .gallery.encre-layout .encre-02 { grid-column: 1; grid-row: 2; }
+        .gallery.encre-layout .encre-03 { grid-column: 2; grid-row: 2; }
+        .gallery.encre-layout .encre-04 { grid-column: 1 / -1; grid-row: 3; }
+        .gallery.encre-layout .encre-05 { grid-column: 1; grid-row: 4; }
+        .gallery.encre-layout .encre-06 { grid-column: 2; grid-row: 4; }
+        .gallery.encre-layout .encre-07 { grid-column: 1 / -1; grid-row: 5; }
+        @media (max-width: 600px) {
+            .gallery.encre-layout { column-gap: 12px; row-gap: 65px; }
+        }
+
     </style>
 </head>
     <body>
@@ -551,6 +588,15 @@ body {
 
         <!-- 👇 LISTE DES DESSINS : POUR MODIFIER LES FICHIERS ET LES CATÉGORIES -->
                 <main class="gallery">
+            <!-- L'Encre et le Sang : galerie 1 / 2 / 1 / 2 / 1. -->
+            <div class="gallery-item encre-item encre-01" data-category="creatures" data-favori="non" data-label="Illustration" onclick="openLightbox(&quot;L&#x27;Encre et le Sang 01- Illustration.jpg&quot;)"><img src="L&#x27;Encre et le Sang 01- Illustration.jpg" alt="Illustration" loading="lazy"></div>
+            <div class="gallery-item encre-item encre-02" data-category="creatures" data-favori="non" data-label="Dragon présentation" onclick="openLightbox(&quot;L&#x27;Encre et le Sang 02- Dragon présentation.jpg&quot;)"><img src="L&#x27;Encre et le Sang 02- Dragon présentation.jpg" alt="Dragon présentation" loading="lazy"></div>
+            <div class="gallery-item encre-item encre-03" data-category="creatures" data-favori="non" data-label="Dragon selle" onclick="openLightbox(&quot;L&#x27;Encre et le Sang 03- Dragon selle.jpg&quot;)"><img src="L&#x27;Encre et le Sang 03- Dragon selle.jpg" alt="Dragon selle" loading="lazy"></div>
+            <div class="gallery-item encre-item encre-04" data-category="creatures" data-favori="non" data-label="Objets" onclick="openLightbox(&quot;L&#x27;Encre et le Sang 04-Objets.png&quot;)"><img src="L&#x27;Encre et le Sang 04-Objets.png" alt="Objets" loading="lazy"></div>
+            <div class="gallery-item encre-item encre-05" data-category="creatures" data-favori="non" data-label="Décor 01" onclick="openLightbox(&quot;L&#x27;Encre et le Sang 05- Décor.jpg&quot;)"><img src="L&#x27;Encre et le Sang 05- Décor.jpg" alt="Décor 01" loading="lazy"></div>
+            <div class="gallery-item encre-item encre-06" data-category="creatures" data-favori="non" data-label="Décor 02" onclick="openLightbox(&quot;L&#x27;Encre et le Sang 06- Décor.jpg&quot;)"><img src="L&#x27;Encre et le Sang 06- Décor.jpg" alt="Décor 02" loading="lazy"></div>
+            <div class="gallery-item encre-item encre-07" data-category="creatures" data-favori="non" data-label="Mockup" onclick="openLightbox(&quot;L&#x27;Encre et le Sang 07- Mockup.png&quot;)"><img src="L&#x27;Encre et le Sang 07- Mockup.png" alt="Mockup" loading="lazy"></div>
+
             <!-- La Nuit des Âmes : quatre rangées de cartes, 65 px entre les rangées. -->
             <div class="gallery-item ames-carte ames-01" data-category="portraits" data-favori="non" data-label="Chandelle" onclick="openLightbox('01-Chandelle.png')"><img src="01-Chandelle.png" alt="Chandelle" loading="lazy"></div>
             <div class="gallery-item ames-carte ames-02" data-category="portraits" data-favori="non" data-label="Déchus" onclick="openLightbox('02-Déchus.png')"><img src="02-Déchus.png" alt="Déchus" loading="lazy"></div>
@@ -703,7 +749,8 @@ body {
 
         function filterGallery(category, button) {
             document.querySelector('.gallery').classList.toggle('voile-layout', category === 'contes');
-            document.querySelector('.gallery').classList.toggle('ames-layout', category === 'portraits'); 
+            document.querySelector('.gallery').classList.toggle('ames-layout', category === 'portraits');
+            document.querySelector('.gallery').classList.toggle('encre-layout', category === 'creatures'); 
             var buttons = document.querySelectorAll('.filter-btn'); 
             for (var i = 0; i < buttons.length; i++) { buttons[i].classList.remove('active'); } 
             if(button) button.classList.add('active'); 
